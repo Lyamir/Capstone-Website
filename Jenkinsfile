@@ -29,7 +29,6 @@ pipeline{
         stage('Testing'){
             steps{
                 sh "npm i selenium-webdriver"
-                sh "npm i assert"
                 echo "-------- Test Phase Started :: Integration Testing via Automated Scripts :: --------"
                 sh "node test"
                 echo "-------- Test Phase Finished :: Integration Testing via Automated Scripts :: --------"
