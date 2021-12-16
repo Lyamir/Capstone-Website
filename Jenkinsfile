@@ -22,13 +22,14 @@ pipeline{
                 docker stop \$DEPLOYED_CONTAINER
                 docker rm \$DEPLOYED_CONTAINER
                 docker run -d -p 8008:3000 --restart unless-stopped --net mynetwork --ip 172.18.0.3 --name \$DEPLOYED_CONTAINER \$NEXUS_ADDRESS/\$IMAGE:\$TAG
-                docker system prune
+                docker system prune -f
                 '''
             }
         }
         stage('Testing'){
             steps{
                 sh "npm i selenium-webdriver"
+                sh "npm i assert"
                 echo "-------- Test Phase Started :: Integration Testing via Automated Scripts :: --------"
                 sh "node test"
                 echo "-------- Test Phase Finished :: Integration Testing via Automated Scripts :: --------"
