@@ -17,10 +17,10 @@ pipeline{
                 sh "docker build -t $IMAGE:$TAG ."
                 //Adding tags to image
                 sh "docker tag $IMAGE:$TAG $NEXUS_ADDRESS/$IMAGE:$TAG"
-                //Running container
-                sh "docker run -d -p 8008:3000 --restart unless-stopped --net mynetwork --ip 172.18.0.3 --name \$DEPLOYED_CONTAINER \$NEXUS_ADDRESS/\$IMAGE:\$TAG"
-                //Docker cleanup
-                sh "docker rmi -f $(docker images -f \"dangling=true\" -q)"
+                //Running container and Docker cleanup
+                sh '''docker run -d -p 8008:3000 --restart unless-stopped --net mynetwork --ip 172.18.0.3 --name \$DEPLOYED_CONTAINER \$NEXUS_ADDRESS/\$IMAGE:\$TAG
+                docker rmi -f $(docker images -f \"dangling=true\" -q)
+                '''
             }
         }
         stage('Testing'){
