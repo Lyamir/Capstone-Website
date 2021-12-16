@@ -32,6 +32,10 @@ pipeline{
                 echo "-------- Test Phase Started :: Integration Testing via Automated Scripts :: --------"
                 sh "node test"
                 echo "-------- Test Phase Finished :: Integration Testing via Automated Scripts :: --------"
+                sh '''
+                    git checkout main
+                    git merge CASE1-1
+                '''
             }
         }
         stage('Artifact Archiving'){
