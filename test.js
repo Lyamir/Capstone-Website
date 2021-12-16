@@ -14,7 +14,7 @@ async function test(){
         if (err.state && err.state === 'no such element') {
             console.log('Element not found');
         } else {
-            webdriver.promise.rejected(err);
+            driver.promise.rejected(err);
         }
     });
     driver.findElement(By.id('deletepost')).then(function(webElement) {
@@ -23,7 +23,7 @@ async function test(){
         if (err.state && err.state === 'no such element') {
             console.log('Element not found');
         } else {
-            webdriver.promise.rejected(err);
+            driver.promise.rejected(err);
         }
     });
     driver.findElement(By.id('commentauthor')).then(function(webElement) {
@@ -33,7 +33,7 @@ async function test(){
         if (err.state && err.state === 'no such element') {
             console.log('Element not found');
         } else {
-            webdriver.promise.rejected(err);
+            driver.promise.rejected(err);
         }
     });
     //await driver.findElement(By.id("commentauthor")).sendKeys("Tester Author");
@@ -44,7 +44,7 @@ async function test(){
         if (err.state && err.state === 'no such element') {
             console.log('Element not found');
         } else {
-            webdriver.promise.rejected(err);
+            driver.promise.rejected(err);
         }
     });
     driver.findElement(By.id('commentsubmit')).then(function(webElement) {
@@ -54,7 +54,7 @@ async function test(){
         if (err.state && err.state === 'no such element') {
             console.log('Element not found');
         } else {
-            webdriver.promise.rejected(err);
+            driver.promise.rejected(err);
         }
     });
     await driver.quit();
