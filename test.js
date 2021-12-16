@@ -1,6 +1,6 @@
 const {Builder, By, Key, ulit, WebDriver} = require ("selenium-webdriver");
 const firefox = require("selenium-webdriver/firefox");
-const { assert } = require("assert");
+const  assert = require("assert");
 
 async function test(){
     let options = new firefox.Options();
@@ -19,7 +19,7 @@ async function test(){
 
     console.log(testText);
 
-    assert.strictEqual(testText, "1 Testing comment area 2021-12-16T17:52:53.000Z Testing authorTester Author");
+    assert.strictEqual(testText, "1 Testing comment area 2021-12-16T17:52:53.000Z Testing authorTester Authora");
 
     // await driver.findElement(By.id('updateposts')).then(function() {
     //     console.log("Update exists");
