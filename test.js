@@ -1,6 +1,7 @@
 const {Builder, By, Key, ulit} = require ("selenium-webdriver");
 const firefox = require("selenium-webdriver/firefox");
 const fs = require("fs");
+const { throws } = require("assert");
 
 async function test(){
     let options = new firefox.Options();
@@ -28,6 +29,7 @@ async function test(){
     }, function(err) {
         if (err.state && err.state === 'no such element') {
             console.log('Element not found');
+            throw new ExplicitAssertionError("Missing comment author div");
         }
     });
     //await driver.findElement(By.id("commentauthor")).sendKeys("Tester Author");
@@ -48,7 +50,6 @@ async function test(){
         }
     });
     await driver.quit();
-    return "SUCCESS";
 }
 
 test();
