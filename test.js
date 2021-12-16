@@ -19,7 +19,7 @@ async function test(){
 
     console.log(testText);
 
-    assert.strictEqual(testText, "");
+    assert.strictEqual(testText, "1 Testing comment area 2021-12-16T17:52:53.000Z Testing authorTester Author");
 
     // await driver.findElement(By.id('updateposts')).then(function() {
     //     console.log("Update exists");
