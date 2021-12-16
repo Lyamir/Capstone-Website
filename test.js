@@ -13,8 +13,6 @@ async function test(){
     }, function(err) {
         if (err.state && err.state === 'no such element') {
             console.log('Element not found');
-        } else {
-            driver.promise.rejected(err);
         }
     });
     driver.findElement(By.id('deletepost')).then(function(webElement) {
