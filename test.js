@@ -12,7 +12,7 @@ async function test(){
     let titleText = await driver.findElement(By.className("title")).getText().then(function(value){
         return value;
     });
-    
+
     assert.strictEqual(titleText, "Goodbye World");
 
     await driver.findElement(By.id('commentauthor')).sendKeys("Tester author");
@@ -21,5 +21,4 @@ async function test(){
 
     await driver.quit();
 }
-
 test();
