@@ -48,6 +48,7 @@ async function test(){
         }
     });
     await driver.quit();
+    return "SUCCESS";
 }
 
 test();
