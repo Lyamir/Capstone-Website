@@ -59,7 +59,7 @@ pipeline{
                 sh '''
                     [ -d ~/.ssh ] || mkdir ~/.ssh && chmod 0700 ~/.ssh
                     ssh-keyscan -t rsa,dsa 192.168.56.102 >> ~/.ssh/known_hosts
-                    ssh -tt caikit@192.168.56.102 ' docker run -d -p 8008:3000 --restart unless-stopped --net mynetwork --ip 172.18.0.3 --name containerized_blogsite localhost:8083/capstone_blogsite:1.0'
+                    ssh -tt caikit@192.168.56.102 ' docker load < /home/caikit/ftp/files/blogsite.tar; docker run -d -p 8008:3000 --restart unless-stopped --net mynetwork --ip 172.18.0.3 --name containerized_blogsite localhost:8083/capstone_blogsite:1.0'
                 '''
                 }
                 //docker stop containerized_blogsite; docker rm containerized_blogsite;
