@@ -1,8 +1,6 @@
 const {Builder, By, Key, ulit} = require ("selenium-webdriver");
 const firefox = require("selenium-webdriver/firefox");
 const fs = require("fs");
-const { throws } = require("assert");
-const { AssertionError } = require("assert/strict");
 
 async function test(){
     let options = new firefox.Options();
