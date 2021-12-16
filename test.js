@@ -9,42 +9,42 @@ async function test(){
     await driver.get("http://localhost:8008");
     await driver.findElement(By.id("postCard-1")).click();
     driver.findElement(By.id('updatepost')).then(function(webElement) {
-        print('Update exists');
+        alert('Update exists');
     }, function(err) {
         if (err.state && err.state === 'no such element') {
-            print('Element not found');
+            alert('Element not found');
         }
     });
     driver.findElement(By.id('deletepost')).then(function(webElement) {
-        print('Delete exists');
+        alert('Delete exists');
     }, function(err) {
         if (err.state && err.state === 'no such element') {
-            print('Element not found');
+            alert('Element not found');
         }
     });
     driver.findElement(By.id('commentauthor')).then(function(webElement) {
-        print('Comment author exists');
+        alert('Comment author exists');
         webElement.sendKeys("Tester Author");
     }, function(err) {
         if (err.state && err.state === 'no such element') {
-            print('Element not found');
+            alert('Element not found');
          }
     });
     //await driver.findElement(By.id("commentauthor")).sendKeys("Tester Author");
     driver.findElement(By.id('commentarea')).then(function(webElement) {
-        print('Comment area exists');
+        alert('Comment area exists');
         webElement.sendKeys("Testing comment area");
     }, function(err) {
         if (err.state && err.state === 'no such element') {
-            print('Element not found');
+            alert('Element not found');
         }
     });
     driver.findElement(By.id('commentsubmit')).then(function(webElement) {
-        print('Comment submit button exists');
+        alert('Comment submit button exists');
         webElement.click();
     }, function(err) {
         if (err.state && err.state === 'no such element') {
-            print('Element not found');
+            alert('Element not found');
         }
     });
     await driver.quit();
