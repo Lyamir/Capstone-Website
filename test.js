@@ -7,6 +7,7 @@ async function test(){
     options.addArguments("-headless");
     let driver = await new Builder().forBrowser("firefox").setFirefoxOptions(options).build();
     await driver.get("http://localhost:8008");
+    await driver.findElement(By.id("postCard-1")).click();
     await driver.findElement(By.id("updatepost")).click();
     await driver.back();
     await driver.findElement(By.id("deletepost")).click();  
