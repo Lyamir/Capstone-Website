@@ -23,7 +23,7 @@ async function test(){
             console.log('Element not found');
         }
     });
-    driver.findElement(By.id('commentauthor')).then(function(webElement) {
+    driver.findElement(By.id('commentauthors')).then(function(webElement) {
         console.log('Comment author exists');
         webElement.sendKeys("Tester Author");
     }, function(err) {
