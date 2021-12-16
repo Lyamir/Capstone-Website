@@ -38,16 +38,10 @@ pipeline{
             steps{
                 echo ""
                 echo "---------- Provisioning Phase Started :: Deploying Artifacts to Nexus Repository :: ----------"
-
                 //Login to the Docker repository
-                withCredentials([usernamePassword(credentialsId: 'nexus', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                sh "docker login -u $USERNAME -p $PASSWORD $NEXUS_ADDRESS"
-                }
 
                 //Artifact deployment
-                echo ""
-                echo "---------- Integration Phase Started :: Deploying Artifacts :: ----------"
-                sh "docker push $NEXUS_ADDRESS/$IMAGE:$TAG"
+
             }
         }
         
