@@ -55,6 +55,6 @@ Post.update = (updatedPost, result) => {
   })
 }
 
-// TODO: Insert Post.getAll() below
+// TODO: Insert Post.getAll() here:
 
 module.exports = Post

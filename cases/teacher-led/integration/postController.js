@@ -3,6 +3,8 @@ const Comment = require('../model/comment')
 const Report = require('../model/report')
 
 const routerFunctions = {
+
+  //TODO: Update getPosts() here:
   getPosts: (req, res) => {
     res.render('index')
   },
