@@ -13,8 +13,8 @@
 </head>
 <body>
   <a href="/">Back to Home</a>
-  <a href="/update/{{id}}">Update Post</a>
-  <a href="/delete/{{id}}">Delete Post</a>
+  <a href="/update/{{id}}" id="updatepost">Update Post</a>
+  <a href="/delete/{{id}}" id="deletepost">Delete Post</a>
   <div class="flexbox">
     <div class="postContainer">
       <div class="title">{{title}}</div>
@@ -27,9 +27,9 @@
       {{/each}}
       <br>
       <form action="/post/{{id}}/add-comment" method="POST">
-          <input type="text" name="author" placeholder="Author" required="required"/>
-          <textarea class= "contentinput" name="content" placeholder="Comment" required="required" style="resize: none"></textarea><br>
-          <button type="submit">Submit Comment</button>    
+          <input id="commentauthor" type="text" name="author" placeholder="Author" required="required"/>
+          <textarea id="commentarea" class= "contentinput" name="content" placeholder="Comment" required="required" style="resize: none"></textarea><br>
+          <button id="commentsubmit" type="submit">Submit Comment</button>    
       </form>
     </div>
     </div>

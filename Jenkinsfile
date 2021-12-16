@@ -13,7 +13,12 @@ pipeline{
     stages{
         stage('Build Step'){
             steps {
-                echo 'Hello World'
+                //Dockerization
+                sh "docker build -t $IMAGE:$TAG ."
+                //Adding tags to image
+                sh "docker tag $IMAGE:$TAG $NEXUS_ADDRESS/$IMAGE:$TAG"
+                //Running container
+                sh "docker run -d -p 8008:3000 --restart unless-stopped --net mynetwork --ip 172.18.0.3 --name \$DEPLOYED_CONTAINER \$NEXUS_ADDRESS/\$IMAGE:\$TAG"
             }
         }
         stage('Testing'){
@@ -28,10 +33,6 @@ pipeline{
             steps{
                 echo ""
                 echo "---------- Provisioning Phase Started :: Deploying Artifacts to Nexus Repository :: ----------"
-                //Dockerization
-                sh "docker build -t $IMAGE:$TAG ."
-                //Preparation to deploy artifact
-                sh "docker tag $IMAGE:$TAG $NEXUS_ADDRESS/$IMAGE:$TAG"
 
                 withCredentials([usernamePassword(credentialsId: 'nexus', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                 sh "docker login -u $USERNAME -p $PASSWORD $NEXUS_ADDRESS"
