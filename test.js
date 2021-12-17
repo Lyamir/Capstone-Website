@@ -13,7 +13,7 @@ async function test(){
         return value;
     });
 
-    assert.strictEqual(titleText, "Goodbye World");
+    assert.strictEqual(titleText, "Goodbye WorldAAA");
 
     await driver.findElement(By.id('commentauthor')).sendKeys("Tester author");
     await driver.findElement(By.id("commentarea")).sendKeys("Testing comment area");
