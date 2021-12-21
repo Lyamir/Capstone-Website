@@ -16,12 +16,36 @@ describe("Unit Tests", async function(){
         //         response.should.have.status(200);
         //         done();
         //     }));
-        console.log("hello");
+        console.log("a unit test");
         done();
     });
 });
 
+describe("Integration Tests", async function(){
+    it("It should GET all posts", function(done){
+        // chai.request(app)
+        //     .get("index")
+        //     .end((function(err, response){
+        //         response.should.have.status(200);
+        //         done();
+        //     }));
+        console.log("an integration test");
+        done();
+    });
+});
 
+describe("System Tests", async function(){
+    it("It should GET all posts", function(done){
+        // chai.request(app)
+        //     .get("index")
+        //     .end((function(err, response){
+        //         response.should.have.status(200);
+        //         done();
+        //     }));
+        console.log("a system test");
+        done();
+    });
+});
 
 
 
