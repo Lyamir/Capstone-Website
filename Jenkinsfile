@@ -21,7 +21,7 @@ pipeline{
                 sh '''
                 docker stop \$DEPLOYED_CONTAINER
                 docker rm \$DEPLOYED_CONTAINER
-                docker run -d -p 3000:8008 --restart unless-stopped --net mynetwork --ip 172.18.0.3 --name \$DEPLOYED_CONTAINER \$NEXUS_ADDRESS/\$IMAGE:\$TAG
+                docker run -d -p 8008:3000 --restart unless-stopped --net mynetwork --ip 172.18.0.3 --name \$DEPLOYED_CONTAINER \$NEXUS_ADDRESS/\$IMAGE:\$TAG
                 docker system prune -f
                 '''
             }
