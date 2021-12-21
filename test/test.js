@@ -16,7 +16,7 @@ describe("Unit Tests", async function(){
     let driver = await new Builder().forBrowser("firefox").setFirefoxOptions(options).build();
     await driver.get("http://localhost:8008");
 
-    it("It should GET all posts", function(done){
+    it("It should GET all posts", async function(done){
         console.log("all posts is retrieved, some are updated or deleted");
         
         await driver.findElement(By.id("postCard-1")).click();
@@ -35,7 +35,7 @@ describe("Unit Tests", async function(){
 });
 
 describe("Integration Tests", async function(){
-    it("It should display a page", function(done){
+    it("It should display a page", async function(done){
         // chai.request(app)
         //     .get("index")
         //     .end((function(err, response){
@@ -48,7 +48,7 @@ describe("Integration Tests", async function(){
 });
 
 describe("System Tests", async function(){
-    it("It should perform an activity", function(done){
+    it("It should perform an activity", async function(done){
         // chai.request(app)
         //     .get("index")
         //     .end((function(err, response){
