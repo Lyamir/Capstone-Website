@@ -21,7 +21,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "mocha --no-timeouts",
+    "test": "mocha",
     "dev": "nodemon index.js"
   },
   "repository": {

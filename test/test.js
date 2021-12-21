@@ -4,13 +4,11 @@ const  assert = require("assert");
 const chai = require("chai");
 const chaihttp = require("chai-http");
 const app = require("../index");
-const { doesNotMatch } = require("assert");
 
 chai.should();
 chai.use(chaihttp);
 
 describe("Unit Tests", function(){
-    const postid = 1;
     it("It should GET all posts", function(){
         chai.request(app)
             .get("index")
