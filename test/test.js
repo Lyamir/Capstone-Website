@@ -9,9 +9,9 @@ chai.should();
 chai.use(chaihttp);
 
 describe("Unit Tests", function(){
-    it("It should GET all posts", function(){
+    it("It should GET all posts", function(done){
         chai.request(app)
-            .get("/")
+            .get("index")
             .end((function(err, response){
                 response.should.have.status(200);
                 done();
