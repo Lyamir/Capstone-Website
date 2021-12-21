@@ -12,7 +12,7 @@ chai.use(chaihttp);
 
 describe("Unit Tests", function(){
 
-    it("It should GET all posts", async function(done){
+    it("It should GET all posts", async function(){
         console.log("all posts is retrieved, some are updated or deleted");
         let options = new firefox.Options();
         options.addArguments("-headless");
@@ -31,7 +31,6 @@ describe("Unit Tests", function(){
         await driver.findElement(By.id("commentarea")).sendKeys("Testing comment area");
         await driver.findElement(By.id('commentsubmit')).click();
         await driver.quit();
-        done();
     });
 });
 
