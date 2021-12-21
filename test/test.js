@@ -11,7 +11,7 @@ chai.use(chaihttp);
 describe("Unit Tests", function(){
     it("It should GET all posts", function(){
         chai.request(app)
-            .get("index")
+            .get("/")
             .end((function(err, response){
                 response.should.have.status(200);
                 done();
