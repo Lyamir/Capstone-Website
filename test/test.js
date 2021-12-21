@@ -10,15 +10,15 @@ const app = require("../index");
 chai.should();
 chai.use(chaihttp);
 
-describe("Unit Tests", async function(){
-    let options = new firefox.Options();
-    options.addArguments("-headless");
-    let driver = await new Builder().forBrowser("firefox").setFirefoxOptions(options).build();
-    await driver.get("http://localhost:8008");
+describe("Unit Tests", function(){
 
     it("It should GET all posts", async function(done){
         console.log("all posts is retrieved, some are updated or deleted");
-        
+        let options = new firefox.Options();
+        options.addArguments("-headless");
+        let driver = await new Builder().forBrowser("firefox").setFirefoxOptions(options).build();
+        await driver.get("http://localhost:8008");
+
         await driver.findElement(By.id("postCard-1")).click();
 
         let titleText = await driver.findElement(By.className("title")).getText().then(function(value){
@@ -30,6 +30,7 @@ describe("Unit Tests", async function(){
         await driver.findElement(By.id('commentauthor')).sendKeys("Tester author");
         await driver.findElement(By.id("commentarea")).sendKeys("Testing comment area");
         await driver.findElement(By.id('commentsubmit')).click();
+        await driver.quit();
         done();
     });
 });
@@ -59,7 +60,6 @@ describe("System Tests", async function(){
         done();
     });
 
-    await driver.quit();
 });
 
 
