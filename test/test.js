@@ -10,14 +10,13 @@ chai.use(chaihttp);
 
 describe("Unit Tests", async function(){
     it("It should GET all posts", function(done){
-        // chai.request(app)
-        //     .get("index")
-        //     .end((function(err, response){
-        //         response.should.have.status(200);
-        //         done();
-        //     }));
         console.log("all posts is retrieved, some are updated or deleted");
-        done();
+        chai.request(app)
+            .get("index")
+            .end((function(err, response){
+                response.should.have.status(200);
+                done();
+            }));
     });
 });
 
