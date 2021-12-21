@@ -1,14 +1,7 @@
 const {Builder, By, Key, ulit, WebDriver} = require ("selenium-webdriver");
 const firefox = require("selenium-webdriver/firefox");
 const  assert = require("assert");
-const chai = require("chai");
-const chaihttp = require("chai-http");
-const router = require("../router/indexRouter");
-const post = require("../controller/postController");
-const app = require("../index");
-
-chai.should();
-chai.use(chaihttp);
+const should = require("chai").should();
 
 describe("Unit Tests", function(){
 
@@ -19,13 +12,25 @@ describe("Unit Tests", function(){
         let driver = await new Builder().forBrowser("firefox").setFirefoxOptions(options).build();
         await driver.get("http://localhost:8008");
 
-        await driver.findElement(By.id("postCard-1")).click();
-
-        let titleText = await driver.findElement(By.className("title")).getText().then(function(value){
+        var resultTitle = await driver.findElement(By.xpath("/html/body/div/a[1]/div/b")).getText().then(function(value){
             return value;
-        });
+        });;
+        var resultDate = await driver.findElement(By.xpath("/html/body/div/a[1]/div/b[2]")).getText().then(function(value){
+            return value;
+        });; 
+        var resultAuthor = await driver.findElement(By.xpath("/html/body/div/a[1]/div/b[3]")).getText().then(function(value){
+            return value;
+        });;
 
-        assert.strictEqual(titleText, "Goodbye World");
+        let postCard1 = {
+            title : "Goodbye World",
+            date : "Wed Oct 27 2021 00:00:00 GMT+0000 (Coordinated Universal Time)",
+            author : "admin"
+        };
+        
+        resultTitle.should.equal(postCard1.title);
+        resultDate.should.equal(postCard1.date);
+        resultAuthor.should.equal(postCard1.author);
 
         await driver.findElement(By.id('commentauthor')).sendKeys("Tester author");
         await driver.findElement(By.id("commentarea")).sendKeys("Testing comment area");
