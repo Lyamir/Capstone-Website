@@ -30,7 +30,7 @@ pipeline{
             steps{
                 sh "npm i selenium-webdriver"
                 echo "-------- Test Phase Started :: Integration Testing via Automated Scripts :: --------"
-                sh "node test"
+                sh "node mocha"
                 echo "-------- Test Phase Finished :: Integration Testing via Automated Scripts :: --------"
             }
         }
@@ -51,33 +51,33 @@ pipeline{
             }
         }
         
-        stage("Deployment"){
-            steps{
-                //Prepare container to be deployed.
-                sh "docker save $NEXUS_ADDRESS/$IMAGE > ./ignore-this/blogsite.tar"
+        // stage("Deployment"){
+        //     steps{
+        //         //Prepare container to be deployed.
+        //         sh "docker save $NEXUS_ADDRESS/$IMAGE > ./ignore-this/blogsite.tar"
             
-                //Publish image to ftp server
-                withCredentials([usernamePassword(credentialsId: 'ftp', passwordVariable: 'ftp_pass', usernameVariable: 'ftp_user')]) {
-                    sh ''' 
-                        lftp -u \$ftp_user,\$ftp_pass -e \"cd /files; put ./ignore-this/blogsite.tar;quit\" \$PROD_IP_ADD
-                    '''
-                }
-                //Stop existing deployed container and run the deployed image
-                sshagent(credentials: ['production_ssh']) {
-                sh '''
-                    [ -d ~/.ssh ] || mkdir ~/.ssh && chmod 0700 ~/.ssh
-                    ssh-keyscan -t rsa,dsa 192.168.56.102 >> ~/.ssh/known_hosts
-                    ssh -tt caikit@192.168.56.102 'docker stop containerized_blogsite; docker rm containerized_blogsite; docker load < /home/caikit/ftp/files/blogsite.tar; docker run -d -p 8008:3000 --restart unless-stopped --net mynetwork --ip 172.18.0.3 --name containerized_blogsite localhost:8083/capstone_blogsite:1.0; docker system prune -f'
-                '''
-                }
+        //         //Publish image to ftp server
+        //         withCredentials([usernamePassword(credentialsId: 'ftp', passwordVariable: 'ftp_pass', usernameVariable: 'ftp_user')]) {
+        //             sh ''' 
+        //                 lftp -u \$ftp_user,\$ftp_pass -e \"cd /files; put ./ignore-this/blogsite.tar;quit\" \$PROD_IP_ADD
+        //             '''
+        //         }
+        //         //Stop existing deployed container and run the deployed image
+        //         sshagent(credentials: ['production_ssh']) {
+        //         sh '''
+        //             [ -d ~/.ssh ] || mkdir ~/.ssh && chmod 0700 ~/.ssh
+        //             ssh-keyscan -t rsa,dsa 192.168.56.102 >> ~/.ssh/known_hosts
+        //             ssh -tt caikit@192.168.56.102 'docker stop containerized_blogsite; docker rm containerized_blogsite; docker load < /home/caikit/ftp/files/blogsite.tar; docker run -d -p 8008:3000 --restart unless-stopped --net mynetwork --ip 172.18.0.3 --name containerized_blogsite localhost:8083/capstone_blogsite:1.0; docker system prune -f'
+        //         '''
+        //         }
 
-                //Finished
-                echo ""
-                echo "------------------------------------------------------------"
-                echo "Deployed here: http://$PROD_IP_ADD:8008"
+        //         //Finished
+        //         echo ""
+        //         echo "------------------------------------------------------------"
+        //         echo "Deployed here: http://$PROD_IP_ADD:8008"
 
 
-            }
-        }
+        //     }
+        // }
     }
 }

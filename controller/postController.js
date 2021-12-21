@@ -10,6 +10,7 @@ const routerFunctions = {
           message: err.message || "Error"
         })
       else
+        console.log(typeof(data));
         res.render('index', {
           posts: data
         })
