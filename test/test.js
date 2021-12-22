@@ -32,9 +32,6 @@ describe("Unit Tests", function(){
         resultDate.should.equal(postCard1.date);
         resultAuthor.should.equal(postCard1.author);
 
-        await driver.findElement(By.id('commentauthor')).sendKeys("Tester author");
-        await driver.findElement(By.id("commentarea")).sendKeys("Testing comment area");
-        await driver.findElement(By.id('commentsubmit')).click();
         await driver.quit();
     });
 });
