@@ -12,55 +12,53 @@ describe("Unit Tests", function(){
         let driver = await new Builder().forBrowser("firefox").setFirefoxOptions(options).build();
         await driver.get("http://localhost:8008");
 
-        var resultTitle = await driver.findElement(By.xpath("/html/body/div/a[1]/div/b")).getText().then(function(value){
-            return value;
-        });;
-        var resultDate = await driver.findElement(By.xpath("/html/body/div/a[1]/div/b[2]")).getText().then(function(value){
-            return value;
-        });; 
-        var resultAuthor = await driver.findElement(By.xpath("/html/body/div/a[1]/div/b[3]")).getText().then(function(value){
-            return value;
-        });;
+        let resultPost1 = await driver.findElement(By.xpath("/html/body/div/a[1]/div")).getText();
+        let resultPost2 = await driver.findElement(By.xpath("/html/body/div/a[2]/div")).getText();
+        let resultPost3 = await driver.findElement(By.xpath("/html/body/div/a[3]/div")).getText();
+        let post1 = "1\nGoodbye World\nWed Oct 27 2021 00:00:00 GMT+0000 (Coordinated Universal Time)\nadmin"
+        let post2 = "2\nTest Post\nWed Oct 27 2021 22:26:02 GMT+0000 (Coordinated Universal Time)\njohn"
+        let post3 = "3\nTest Post 2\nWed Oct 27 2021 22:28:45 GMT+0000 (Coordinated Universal Time)\nadmin"
 
-        let postCard1 = {
-            title : "Goodbye World",
-            date : "Wed Oct 27 2021 00:00:00 GMT+0000 (Coordinated Universal Time)",
-            author : "admin"
-        };
-        
-        resultTitle.should.equal(postCard1.title);
-        resultDate.should.equal(postCard1.date);
-        resultAuthor.should.equal(postCard1.author);
+        resultPost1.should.equal(post1);
+        resultPost2.should.equal(post2);
+        resultPost3.should.equal(post3);
 
         await driver.quit();
     });
 });
 
 describe("Integration Tests", async function(){
-    it("It should display a page", async function(done){
-        // chai.request(app)
-        //     .get("index")
-        //     .end((function(err, response){
-        //         response.should.have.status(200);
-        //         done();
-        //     }));
+    it("It should display a page", async function(){
         console.log("a page is displayed with the expected output");
-        done();
-    });
-});
+        let options = new firefox.Options();
+        options.addArguments("-headless");
+        let driver = await new Builder().forBrowser("firefox").setFirefoxOptions(options).build();
+        await driver.get("http://localhost:8008");
 
-describe("System Tests", async function(){
-    it("It should perform an activity", async function(done){
-        // chai.request(app)
-        //     .get("index")
-        //     .end((function(err, response){
-        //         response.should.have.status(200);
-        //         done();
-        //     }));
-        console.log("an activity is performed");
-        done();
-    });
+        await driver.findElement(By.xpath("/html/body/div/a[1]/div"));
+        await driver.findElement(By.xpath("/html/body/div/a[2]/div"));
+        await driver.findElement(By.xpath("/html/body/div/a[3]/div")).click();
+        
+        let titleResult = await driver.findElement(By.xpath("/html/body/div/div/div[1]")).getText();
+        let authorResult = await driver.findElement(By.xpath("/html/body/div/div/div[2]")).getText();
+        let dateResult = await driver.findElement(By.xpath("/html/body/div/div/div[3]")).getText();
+        let contentResult = await driver.findElement(By.xpath("/html/body/div/div/div[4]")).getText();
 
+        let title = "Test Post 2";
+        let author = "Created by: admin";
+        let date = "Created on: Wed Oct 27 2021 22:28:45 GMT+0000 (Coordinated Universal Time)";
+        let content = "This is another test post";
+
+        titleResult.should.equal(title);
+        authorResult.should.equal(author);
+        dateResult.should.equal(date);
+        contentResult.should.equal(content);
+
+        await driver.findElement(By.xpath("//*[@id=\"updatepost\"]")).click();
+        await driver.findElement(By.xpath("/html/body/div/div/form/div/button")).click();
+
+        await driver.quit();
+    });
 });
 
 
