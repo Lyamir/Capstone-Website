@@ -27,6 +27,7 @@ CREATE TABLE IF NOT EXISTS `reports` (
   `numComments` int DEFAULT 0,
   PRIMARY KEY (`postID`),
   FOREIGN KEY (`postID`) REFERENCES `posts`(`id`)
+  ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 INSERT INTO `posts` (id, title, content, date, author_username) 
