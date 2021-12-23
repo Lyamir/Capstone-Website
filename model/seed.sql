@@ -19,6 +19,7 @@ CREATE TABLE IF NOT EXISTS `comments` (
   `author_username` varchar(45) NOT NULL,
   PRIMARY KEY (`id`, `postID`),
   FOREIGN KEY (`postID`) REFERENCES `posts`(`id`)
+  ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 CREATE TABLE IF NOT EXISTS `reports` (
