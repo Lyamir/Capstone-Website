@@ -210,5 +210,5 @@ describe("Integration Testing", async function(){
         resultingElement.should.be.empty;
 
         await driver.quit();
-    })
-})
+    });
+});
