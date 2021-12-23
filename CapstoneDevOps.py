@@ -41,14 +41,22 @@ while state:
                     #Copies the files from src directory into the dest directory for this use it moves the file for the teacher led case for 
                     #integration into the model to simulate the case
                     #Change the path directory to fit where the Capstone-Website is
-                    src = r"~/Documents/caikit/capstone-blogsite/cases/teacher-led_cases/integration"
-                    dest = r"~/Documents/caikit/capstone-blogsite/model"
+                    src = r"/home/caikit/Documents/caikit/capstone-blogsite/cases/teacher-led_cases/integration/model"
+                    dest = r"/home/caikit/Documents/caikit/capstone-blogsite/model"
                     files = os.listdir(src)
                     files2 = os.listdir(dest)
                     os.chdir(src)
                     for file in files:
                         if os.path.isfile(file):
                             shutil.copy(file,dest)
+                    src2 = r"/home/caikit/Documents/caikit/capstone-blogsite/cases/teacher-led_cases/integration/controller"
+                    dest2 = r"/home/caikit/Documents/caikit/capstone-blogsite/controller"
+                    files3 = os.listdir(src2)
+                    files4 = os.listdir(dest2)
+                    os.chdir(src2)
+                    for file in files3:
+                        if os.path.isfile(file):
+                            shutil.copy(file,dest2)
                     caseState = False
                     confirmationState = False
                 elif caseoption == 2:
@@ -56,7 +64,7 @@ while state:
                     print("Please wait while we prepare the case")
                     #os.chdir(src)
                     #for file in files:
-                    #~/Documents/caikit/capstone-messaging
+                    #r"/home/caikit/Documents/caikit/capstone-messaging"
                     #    if os.path.isfile(file):
                     #        shutil.copy(file,dest)
                     caseState = False
@@ -66,7 +74,7 @@ while state:
                     print("Please wait while we prepare the case")
                     # os.chdir(src)
                     # for file in files:
-                    #~/Documents/caikit/capstone-todolist
+                    #r"/home/caikit/Documents/caikit/capstone-todolist"
                     #     if os.path.isfile(file):
                     #         shutil.copy(file,dest)
                     caseState = False
@@ -87,8 +95,8 @@ while state:
                 if caseoption == 1:
                     print("You have chosen the Teacher-led case")
                     print("Please wait while we prepare the case")
-                    # src = r"C:\Users\Panda\Desktop\Capstone\Capstone-Website\cases\teacher-led_cases\"
-                    # dest = r"C:\Users\Panda\Desktop\Capstone\Capstone-Website\model"
+                    # src = r"/home/caikit/Documents/caikit/capstone-blogsite/cases/teacher-led_cases/testing"
+                    # dest = r"/home/caikit/Documents/caikit/capstone-blogsite/model"
                     # files = os.listdir(src)
                     # files2 = os.listdir(dest)
                     # os.chdir(src)
@@ -102,7 +110,7 @@ while state:
                     print("Please wait while we prepare the case")
                     # os.chdir(src)
                     # for file in files:
-                    #~/Documents/caikit/capstone-messaging                    
+                    #r"/home/caikit/Documents/caikit/capstone-messaging"                
                     #     if os.path.isfile(file):
                     #         shutil.copy(file,dest)
                     caseState = False
@@ -112,7 +120,7 @@ while state:
                     print("Please wait while we prepare the case")
                     # os.chdir(src)
                     # for file in files:
-                    #~/Documents/caikit/capstone-todolist
+                    #r"/home/caikit/Documents/caikit/capstone-todolist"
                     #     if os.path.isfile(file):
                     #         shutil.copy(file,dest)
                     caseState = False
@@ -132,8 +140,8 @@ while state:
                 if caseoption == 1:
                     print("You have chosen the Teacher-led case")
                     print("Please wait while we prepare the case")
-                    src = r"~/Documents/caikit/capstone-blogsite/cases/teacher-led_cases/integration"
-                    dest = r"~/Documents/caikit/capstone-blogsite/model"
+                    # src = r"/home/caikit/Documents/caikit/capstone-blogsite/cases/teacher-led_cases/deployment"
+                    # dest = r"/home/caikit/Documents/caikit/capstone-blogsite/model"
                     # files = os.listdir(src)
                     # files2 = os.listdir(dest)
                     # os.chdir(src)
@@ -147,7 +155,7 @@ while state:
                     print("Please wait while we prepare the case")
                     # os.chdir(src)
                     # for file in files:
-                    #~/Documents/caikit/capstone-messaging
+                    #r"/home/caikit/Documents/caikit/capstone-messaging"
                     #     if os.path.isfile(file):
                     #         shutil.copy(file,dest)
                     caseState = False
@@ -157,7 +165,7 @@ while state:
                     print("Please wait while we prepare the case")
                     # os.chdir(src)
                     # for file in files:
-                    #~/Documents/caikit/capstone-todolist
+                    #r"/home/caikit/Documents/caikit/capstone-todolist"
                     #     if os.path.isfile(file):
                     #         shutil.copy(file,dest)
                     caseState = False
@@ -171,8 +179,8 @@ while state:
             if (confirmation == 'y' or confirmation == "Y"):
                 print("Resetting")
                 confirmationState = True
-                src = r"~/Documents/caikit/capstone-blogsite/cases/teacher-led_cases/integration"
-                dest = r"~/Documents/caikit/capstone-blogsite/model"
+                src = r"/home/caikit/Documents/caikit/.capstone-blogsite"
+                dest = r"/home/caikit/Documents/caikit/capstone-blogsite"
                 files = os.listdir(src)
                 files2 = os.listdir(dest)
                 os.chdir(src)
