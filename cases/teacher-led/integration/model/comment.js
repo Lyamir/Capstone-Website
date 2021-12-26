@@ -19,6 +19,7 @@ Comment.add = (newComment, result) => {
   })
 }
 
+//TODO: Fix comments. They are not showing
 Comment.getComments = (id, result) => {
   db.query("SELECT * FROM comments WHERE postID = ?", -1, (err, res) => {
     if (err) {
@@ -32,7 +33,7 @@ Comment.getComments = (id, result) => {
 }
 
 Comment.delete = (id, result) => {
-  db.query('DELETE FROM comments WHERE id = ?', -1, (err, res) => {
+  db.query('DELETE FROM comments WHERE id = ?', [id], (err, res) => {
     if(err){
       console.log("error: ", err)
       result(null, err)

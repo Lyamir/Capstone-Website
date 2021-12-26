@@ -3,6 +3,8 @@ const firefox = require("selenium-webdriver/firefox");
 const assert = require("assert");
 const should = require("chai").should();
 
+let address = "http://localhost:8008";
+
 let post = {
     title:"Integration Testing",
     content:"Testing the integration of all modules",
@@ -22,7 +24,7 @@ describe("Unit Tests", async function(){
         let options = new firefox.Options();
         options.addArguments("-headless");
         let driver = await new Builder().forBrowser("firefox").setFirefoxOptions(options).build();
-        await driver.get("http://localhost:8008");
+        await driver.get(address);
 
         let allPosts = await driver.findElements(By.className("postLink"));
         allPosts.should.not.be.empty;
@@ -35,7 +37,7 @@ describe("Unit Tests", async function(){
         let options = new firefox.Options();
         options.addArguments("-headless");
         let driver = await new Builder().forBrowser("firefox").setFirefoxOptions(options).build();
-        await driver.get("http://localhost:8008");
+        await driver.get(address);
 
         await driver.findElement(By.xpath("/html/body/div/a[1]/div")).click();
 
@@ -46,7 +48,7 @@ describe("Unit Tests", async function(){
 
         let title = "Goodbye World";
         let author = "Created by: admin";
-        let date = "Created on: Wed Oct 27 2021 00:00:00 GMT+0000 (Coordinated Universal Time)";
+        let date = "Created on: Wed Oct 27 2021 00:00:00 GMT+0800 (Philippine Standard Time)";
         let content = "This is an updated post";
 
         titleResult.should.equal(title);
@@ -65,7 +67,7 @@ describe("Unit Tests", async function(){
         let options = new firefox.Options();
         options.addArguments("-headless");
         let driver = await new Builder().forBrowser("firefox").setFirefoxOptions(options).build();
-        await driver.get("http://localhost:8008");
+        await driver.get(address);
 
         let testingPost = await driver.findElements(By.xpath("//*[contains(text(), \""+post.title+"\")]"));
 
@@ -79,7 +81,7 @@ describe("Unit Tests", async function(){
         let options = new firefox.Options();
         options.addArguments("-headless");
         let driver = await new Builder().forBrowser("firefox").setFirefoxOptions(options).build();
-        await driver.get("http://localhost:8008");
+        await driver.get(address);
 
         await driver.findElement(By.xpath("/html/body/header/a")).click();
 
@@ -89,7 +91,7 @@ describe("Unit Tests", async function(){
         await driver.findElement(By.xpath("/html/body/div/div/form/div/button")).click();
 
         //Test if the post exists in the homepage
-        await driver.navigate().to("http://localhost:8008");
+        await driver.navigate().to(address);
         let resultingElement = await driver.findElements(By.xpath("//*[contains(text(), \""+post.title+"\")]"));
         resultingElement.should.not.be.empty;
 
@@ -101,7 +103,7 @@ describe("Unit Tests", async function(){
         let options = new firefox.Options();
         options.addArguments("-headless");
         let driver = await new Builder().forBrowser("firefox").setFirefoxOptions(options).build();
-        await driver.get("http://localhost:8008");
+        await driver.get(address);
 
         await driver.findElement(By.xpath("//*[contains(text(), \""+post.title+"\")]")).click();
 
@@ -123,7 +125,7 @@ describe("Unit Tests", async function(){
         let options = new firefox.Options();
         options.addArguments("-headless");
         let driver = await new Builder().forBrowser("firefox").setFirefoxOptions(options).build();
-        await driver.get("http://localhost:8008");
+        await driver.get(address);
 
         await driver.findElement(By.xpath("//*[contains(text(), \""+testingUpdate+"\")]")).click();
 
@@ -143,14 +145,14 @@ describe("Unit Tests", async function(){
         let options = new firefox.Options();
         options.addArguments("-headless");
         let driver = await new Builder().forBrowser("firefox").setFirefoxOptions(options).build();
-        await driver.get("http://localhost:8008");
+        await driver.get(address);
 
         await driver.findElement(By.xpath("//*[contains(text(), \""+testingUpdate+"\")]")).click();
 
         await driver.findElement(By.xpath("//*[@id=\"deletepost\"]")).click();
 
         //Test if post has been deleted in homepage
-        await driver.navigate().to("http://localhost:8008");
+        await driver.navigate().to(address);
         let resultingElement = await driver.findElements(By.xpath("//*[contains(text(), \""+testingUpdate+"\")]"));
         resultingElement.should.be.empty;
 
@@ -163,14 +165,14 @@ describe("Integration Testing", async function(){
         let options = new firefox.Options();
         options.addArguments("-headless");
         let driver = await new Builder().forBrowser("firefox").setFirefoxOptions(options).build();
-        await driver.get("http://localhost:8008");
+        await driver.get(address);
 
         //Checks to see if the testing post is in
         let testingPost = await driver.findElements(By.xpath("//*[contains(text(), \""+post.title+"\")]"));
         testingPost.should.be.empty;
 
         //Creates the post
-        await driver.navigate().to("http://localhost:8008");
+        await driver.navigate().to(address);
         await driver.findElement(By.xpath("/html/body/header/a")).click();
         await driver.findElement(By.xpath("/html/body/div/div/form/div/input[1]")).sendKeys(post.title);
         await driver.findElement(By.xpath("/html/body/div/div/form/div/input[2]")).sendKeys(post.author);
@@ -178,12 +180,12 @@ describe("Integration Testing", async function(){
         await driver.findElement(By.xpath("/html/body/div/div/form/div/button")).click();
         
         //Checks if the post is created
-        await driver.navigate().to("http://localhost:8008");
+        await driver.navigate().to(address);
         let resultingElement = await driver.findElements(By.xpath("//*[contains(text(), \""+post.title+"\")]"));
         resultingElement.should.not.be.empty;
 
         //Updates the created post
-        await driver.navigate().to("http://localhost:8008");
+        await driver.navigate().to(address);
         await driver.findElement(By.xpath("//*[contains(text(), \""+post.title+"\")]")).click();
         await driver.findElement(By.xpath("//*[@id=\"updatepost\"]")).click();
         await driver.findElement(By.xpath("/html/body/div/div/form/div/input[1]")).clear();
@@ -194,8 +196,9 @@ describe("Integration Testing", async function(){
         let resultingTitle = await driver.findElement(By.xpath("/html/body/div/div/div[1]")).getText();
         resultingTitle.should.equal(testingUpdate);
 
+        //TODO: Add testing for comment functionality
         //Adds a comment
-        await driver.navigate().to("http://localhost:8008");
+        await driver.navigate().to(address);
         await driver.findElement(By.xpath("//*[contains(text(), \""+testingUpdate+"\")]")).click();
 
         await driver.findElement(By.xpath("//*[@id=\"commentauthor\"]")).sendKeys(testComment.author);
@@ -212,15 +215,15 @@ describe("Integration Testing", async function(){
         let options = new firefox.Options();
         options.addArguments("-headless");
         let driver = await new Builder().forBrowser("firefox").setFirefoxOptions(options).build();
-        await driver.get("http://localhost:8008");
+        await driver.get(address);
 
         //Delete the post test
-        await driver.navigate().to("http://localhost:8008");
+        await driver.navigate().to(address);
         await driver.findElement(By.xpath("//*[contains(text(), \""+testingUpdate+"\")]")).click();
         await driver.findElement(By.xpath("//*[@id=\"deletepost\"]")).click();
 
         //Test if post has been deleted in homepage
-        await driver.navigate().to("http://localhost:8008");
+        await driver.navigate().to(address);
         let resultingElement = await driver.findElements(By.xpath("//*[contains(text(), \""+testingUpdate+"\")]"));
         resultingElement.should.be.empty;
 
