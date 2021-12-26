@@ -152,7 +152,7 @@ describe("Unit Tests", async function(){
 });
 
 describe("Integration Testing", async function(){
-    it("It should test the functionality of Post", async function(){
+    it("It should test the functionality of Post (Part 1 of Integration Testing)", async function(){
         let options = new firefox.Options();
         options.addArguments("-headless");
         let driver = await new Builder().forBrowser("firefox").setFirefoxOptions(options).build();
@@ -169,6 +169,7 @@ describe("Integration Testing", async function(){
         await driver.findElement(By.xpath("/html/body/div/div/form/div/input[2]")).sendKeys(post.author);
         await driver.findElement(By.xpath("/html/body/div/div/form/div/textarea")).sendKeys(post.content);
         await driver.findElement(By.xpath("/html/body/div/div/form/div/button")).click();
+        
         //Checks if the post is created
         await driver.navigate().to("http://localhost:8008");
         let resultingElement = await driver.findElements(By.xpath("//*[contains(text(), \""+post.title+"\")]"));
@@ -183,7 +184,6 @@ describe("Integration Testing", async function(){
         await driver.findElement(By.xpath("/html/body/div/div/form/div/button")).click();
         
         //Test if updates are reflected
-        await driver.navigate().to("http://localhost:8008");
         let resultingTitle = await driver.findElement(By.xpath("/html/body/div/div/div[1]")).getText();
         resultingTitle.should.equal(testingUpdate);
 
@@ -198,10 +198,18 @@ describe("Integration Testing", async function(){
         //Test if comment has been added
         let resultingComment = await driver.findElements(By.xpath("/html/body/div/div/div[5]"));
         resultingComment.should.not.be.empty;
+        
+        await driver.quit();
+    });
+    it("Delete the testing post (Part 2 of Integration Testing)", async function(){
+        let options = new firefox.Options();
+        options.addArguments("-headless");
+        let driver = await new Builder().forBrowser("firefox").setFirefoxOptions(options).build();
+        await driver.get("http://localhost:8008");
 
         //Delete the post test
+        await driver.navigate().to("http://localhost:8008");
         await driver.findElement(By.xpath("//*[contains(text(), \""+testingUpdate+"\")]")).click();
-
         await driver.findElement(By.xpath("//*[@id=\"deletepost\"]")).click();
 
         //Test if post has been deleted in homepage
