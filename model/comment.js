@@ -31,6 +31,10 @@ Comment.add = (newComment, result) => {
 //   })
 // }
 
+Comment.getComments = (id, result) => {
+  return
+}
+
 Comment.delete = (id, result) => {
   db.query('DELETE FROM comments WHERE id = ?', [id], (err, res) => {
     if(err){
