@@ -48,7 +48,7 @@ describe("Unit Tests", async function(){
 
         let title = "Goodbye World";
         let author = "Created by: admin";
-        let date = "Created on: Wed Oct 27 2021 00:00:00 GMT+0800 (Philippine Standard Time)";
+        let date = "Created on: Wed Oct 27 2021 00:00:00 GMT+0000 (Coordinated Universal Time)";
         let content = "This is an updated post";
 
         titleResult.should.equal(title);
