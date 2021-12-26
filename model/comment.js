@@ -32,7 +32,7 @@ Comment.add = (newComment, result) => {
 // }
 
 Comment.getComments = (id, result) => {
-  return
+  
 }
 
 Comment.delete = (id, result) => {
