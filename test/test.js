@@ -17,6 +17,7 @@ let testComment = {
 }
 
 describe("Unit Tests", async function(){
+    //Tests get functionality of the posts displayed in the homepage
     it("Homepage should GET all posts", async function(){
         let options = new firefox.Options();
         options.addArguments("-headless");
@@ -29,6 +30,7 @@ describe("Unit Tests", async function(){
         await driver.quit();
     });
 
+    //Tests view functionality of a post
     it("It should display a page", async function(){
         let options = new firefox.Options();
         options.addArguments("-headless");
@@ -58,6 +60,7 @@ describe("Unit Tests", async function(){
         await driver.quit();
     });
 
+    //Tests if the testing data is already in use
     it("Testing post should not appear in the homepage", async function(){
         let options = new firefox.Options();
         options.addArguments("-headless");
@@ -71,6 +74,7 @@ describe("Unit Tests", async function(){
         await driver.quit();
     });
 
+    //Tests create functionality of post
     it("It should create a post", async function(){
         let options = new firefox.Options();
         options.addArguments("-headless");
@@ -92,6 +96,7 @@ describe("Unit Tests", async function(){
         await driver.quit();
     });
 
+    //Tests update functionality of post
     it("It should update the created post", async function(){
         let options = new firefox.Options();
         options.addArguments("-headless");
@@ -113,6 +118,7 @@ describe("Unit Tests", async function(){
         await driver.quit();
     });
 
+    //TODO:Tests comment functionality of post
     it("It should add a comment to the added post", async function(){
         let options = new firefox.Options();
         options.addArguments("-headless");
@@ -132,6 +138,7 @@ describe("Unit Tests", async function(){
         await driver.quit();
     });
 
+    //Tests delete functionality of post
     it("It should delete the testing post", async function(){
         let options = new firefox.Options();
         options.addArguments("-headless");

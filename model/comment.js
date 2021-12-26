@@ -19,17 +19,17 @@ Comment.add = (newComment, result) => {
   })
 }
 
-Comment.getComments = (id, result) => {
-  db.query("SELECT * FROM comments WHERE postID = ?", [id], (err, res) => {
-    if (err) {
-      console.log("error: ", err)
-      result(null, err)
-      return
-    }
+// Comment.getComments = (id, result) => {
+//   db.query("SELECT * FROM comments WHERE postID = ?", [id], (err, res) => {
+//     if (err) {
+//       console.log("error: ", err)
+//       result(null, err)
+//       return
+//     }
 
-    result(null, res)
-  })
-}
+//     result(null, res)
+//   })
+// }
 
 Comment.delete = (id, result) => {
   db.query('DELETE FROM comments WHERE id = ?', [id], (err, res) => {
