@@ -7,17 +7,19 @@ const Post = function(title, content, date, author_username) {
     this.author_username = author_username
   }
 
-Post.create = (newPost, result) => {
-  db.query("INSERT INTO posts SET ?", [newPost.title, newPost.content, newPost.date, newPost.author_username], (err, res) =>{
-    if(err){
-      console.log("error: ", err)
-      result(err, null)
-      return
-    }
+  //Programmer 1:Insert Post.create here
 
-    result(null, {id: res.insertID, ...newPost})
-  })
-}
+Post.getAll = result => {
+    db.query("SELECT * FROM posts", (err, res) => {
+      if (err) {
+        console.log("error: ", err)
+        result(null, err)
+        return
+      }
+  
+      result(null, res)
+    })
+  }
 
 Post.getPost = (id, result) => {
   db.query('SELECT * FROM posts WHERE id = ?', [id], (err, res) =>{
@@ -31,17 +33,7 @@ Post.getPost = (id, result) => {
   })
 }
 
-Post.delete = (id, result) => {
-  db.query('DELETE FROM posts WHERE id = ?', [id], (err, res) => {
-    if(err){
-      console.log("error: ", err)
-      result(null, err)
-      return
-    }
-
-    result(null, res)
-  })
-}
+//Programmer 2:Insert Post.delete here
 
 Post.update = (updatedPost, result) => {
   db.query("UPDATE posts SET title = ?, content = ? WHERE id = ?", [updatedPost.title, updatedPost.content, updatedPost.id], (err, res) =>{
@@ -55,6 +47,6 @@ Post.update = (updatedPost, result) => {
   })
 }
 
-// TODO: Insert Post.getAll() here:
+// TODO Phase2: Creation of Post.create and Post.delete
 
 module.exports = Post
