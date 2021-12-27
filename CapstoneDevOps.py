@@ -231,11 +231,13 @@ while state:
 # cd /home/caikit/Documents/caikit/git-server/capstone-blogsite.git
 # git init --bare
 # rm -r /home/caikit/Documents/caikit/sites/capstone-blogsite
-# cp /home/caikit/Documents/caikit/sites/unaltered-capstone-blogsite /home/caikit/Documents/caikit/sites/capstone-blogsite
-# cp /home/caikit/Documents/caikit/cases/teacher-led/integration/ /home/caikit/Documents/caikit/sites/capstone-blogsite
+# cp -r /home/caikit/Documents/caikit/sites/unaltered-capstone-blogsite/* /home/caikit/Documents/caikit/sites/capstone-blogsite
+# cp -r /home/caikit/Documents/caikit/cases/teacher-led/integration/* /home/caikit/Documents/caikit/sites/capstone-blogsite
 # git init
 # git remote add origin /home/caikit/Documents/caikit/git-server/capstone-blogsite.git
 # git add .
 # git commit -m "Initial Commit"
 # git push origin master
+
+
 
