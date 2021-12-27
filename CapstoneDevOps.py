@@ -194,3 +194,48 @@ while state:
                 state = False
         else:
             print('Unknown Option try again')
+
+#* FOLDER DIRECTORY
+#* /home/caikit/Documents/caikit/                                           caikit root folder (insert script here)
+#* /home/caikit/Documents/caikit/cases/                                     cases
+#* /home/caikit/Documents/caikit/cases/teacher-led/                         all teacher-led cases
+#* /home/caikit/Documents/caikit/cases/student-led/                         all student-led cases
+#* /home/caikit/Documents/caikit/cases/project-based/                       all project-based cases
+#* /home/caikit/Documents/caikit/cases/*/integration/                       continuous integration case (CASEx-1)
+#* /home/caikit/Documents/caikit/cases/*/testing/                           continuous testing case (CASEx-2)
+#* /home/caikit/Documents/caikit/cases/*/delivery-and-deployment/           continuous delivery and deployment case (CASEx-3)
+#* /home/caikit/Documents/caikit/roles/                                     roles 
+#* /home/caikit/Documents/caikit/roles/programmer1                          Programmer 1's folder
+#* /home/caikit/Documents/caikit/roles/programmer2                          Programmer 2's folder
+#* /home/caikit/Documents/caikit/roles/techlead                             Tech Lead's folder 
+#* /home/caikit/Documents/caikit/roles/qaengineer                           QA Engineer's folder
+#* /home/caikit/Documents/caikit/roles/devopsengineer                       DevOps Engineer's folder
+#* /home/caikit/Documents/caikit/sites/                                     all git sites
+#* /home/caikit/Documents/caikit/sites/capstone-blogsite                    capstone-blogsite folder
+#* /home/caikit/Documents/caikit/sites/capstone-messaging                   capstone-messaging folder
+#* /home/caikit/Documents/caikit/sites/capstone-todolist                    capstone-todolist folder
+#* /home/caikit/Documents/caikit/sites/unaltered-capstone-blogsite          unaltered capstone-blogsite folder (NO GIT)
+#* /home/caikit/Documents/caikit/sites/unaltered-capstone-messaging         unaltered capstone-messaging folder (NO GIT)
+#* /home/caikit/Documents/caikit/sites/unaltered-capstone-todolist          unaltered capstone-todolist folder (NO GIT)
+#* /home/caikit/Documents/caikit/git-server                                 git server
+#* /home/caikit/Documents/caikit/git-server/capstone-blogsite.git           working git repo
+
+#! case initialization (assuming we already have the finished pipeline)
+# rm -r /home/caikit/Documents/caikit/roles/programmer1/*
+# rm -r /home/caikit/Documents/caikit/roles/programmer2/*
+# rm -r /home/caikit/Documents/caikit/roles/devopsengineer/*
+# rm -r /home/caikit/Documents/caikit/roles/qaengineer/*
+# rm -r /home/caikit/Documents/caikit/roles/techlead/*
+# rm -r /home/caikit/Documents/caikit/git-server/capstone-blogsite.git
+# mkdir /home/caikit/Documents/caikit/git-server/capstone-blogsite.git
+# cd /home/caikit/Documents/caikit/git-server/capstone-blogsite.git
+# git init --bare
+# rm -r /home/caikit/Documents/caikit/sites/capstone-blogsite
+# cp /home/caikit/Documents/caikit/sites/unaltered-capstone-blogsite /home/caikit/Documents/caikit/sites/capstone-blogsite
+# cp /home/caikit/Documents/caikit/cases/teacher-led/integration/ /home/caikit/Documents/caikit/sites/capstone-blogsite
+# git init
+# git remote add origin /home/caikit/Documents/caikit/git-server/capstone-blogsite.git
+# git add .
+# git commit -m "Initial Commit"
+# git push origin master
+
