@@ -8,12 +8,22 @@ import json
 import signal
 import shutil
 import getpass
+from git.repo.base import Repo
 
 state= True;
 caseState = True;
 
-username = getpass.getuser()
 confirmationState = True;
+
+def git_push():
+    try:
+        repo = Repo("/home/caikit/Documents/caikit/sites/capstone-blogsite")
+        repo.index.add(".")
+        repo.index.commit("Initial Commit")
+        origin = repo.remote(name='origin')
+        origin.push()
+    except:
+        print('Some error occured while pushing the code')
 
 #Loops while the user has not selected a valid choice
 while state:
@@ -57,6 +67,43 @@ while state:
                     for file in files3:
                         if os.path.isfile(file):
                             shutil.copy(file,dest2)
+                    src3 = r"/home/caikit/Documents/caikit/capstone-blogsite/cases/teacher-led_cases/integration/views"
+                    dest3 =r"/home/caikit/Documents/caikit/capstone-blogsite/views"
+                    files5 = os.listdir(src3)
+                    files6 = os.listdir(dest3)
+                    os.chdir(src3)
+                    for file in files5:
+                        if os.path.isfile(file):
+                            shutil.copy(file,dest3)
+                    src4 = r"/home/caikit/Documents/caikit/capstone-blogsite/cases/teacher-led_cases/integration"
+                    dest4 =r"/home/caikit/Documents/caikit/capstone-blogsite/"
+                    files7 = os.listdir(src4)
+                    files8 = os.listdir(dest4)
+                    os.chdir(src4)
+                    for file in files7:
+                        if os.path.isfile(file):
+                            shutil.copy(file,dest4)                    
+                    shutil.rmtree(r"/home/caikit/Documents/caikit/roles/programmer1/", ignore_errors= True)
+                    shutil.rmtree(r"/home/caikit/Documents/caikit/roles/programmer2/", ignore_errors= True)
+                    shutil.rmtree(r"/home/caikit/Documents/caikit/roles/devopsengineer/", ignore_errors= True)
+                    shutil.rmtree(r"/home/caikit/Documents/caikit/roles/qaengineer/", ignore_errors= True)
+                    shutil.rmtree(r"/home/caikit/Documents/caikit/roles/techlead/", ignore_errors= True)
+                    shutil.rmtree(r"/home/caikit/Documents/caikit/git-server/capstone-blogsite.git", ignore_errors= True)
+                    os.makedirs("/home/caikit/Documents/caikit/git-server/capstone-blogsite.git")
+                    Repo.init("/home/caikit/Documents/caikit/git-server/capstone-blogsite.git")
+                    shutil.rmtree(r"/home/caikit/Documents/caikit/sites/capstone-blogsite",ignore_errors=True)
+                    os.makedirs("/home/caikit/Documents/caikit/sites/capstone-blogsite/Capstone-Website")
+                    src5 = r"/home/caikit/Documents/caikit/sites/unaltered-capstone-blogsite"
+                    dest5 = r"/home/caikit/Documents/caikit/sites/capstone-blogsite"
+                    shutil.copytree(src5,dest5,symlinks=False,ignore=None,ignore_dangling_symlinks=False,dirs_exist_ok=True)
+
+                    src6 = r"/home/caikit/Documents/caikit/sites/unaltered-capstone-blogsite/"
+                    dest6 = r"/home/caikit/Documents/caikit/sites/capstone-blogsite"
+                    shutil.copytree(src6,dest6,symlinks=False,ignore=None,ignore_dangling_symlinks=False,dirs_exist_ok=True)
+
+                    Repo.init("/home/caikit/Documents/caikit/sites/capstone-blogsite")
+                    git_push
+
                     caseState = False
                     confirmationState = False
                 elif caseoption == 2:
