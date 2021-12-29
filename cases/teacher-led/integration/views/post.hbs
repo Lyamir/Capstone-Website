@@ -12,14 +12,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"> 
 </head>
 
-// TODO: Addition of the title, author, date and content div
+
 <body>
   <a href="/">Back to Home</a>
   <a href="/update/{{id}}">Update Post</a>
   <a href="/delete/{{id}}">Delete Post</a>
   <div class="flexbox">
     <div class="postContainer">
-      
+      <!-- TODO: Addition of the title, author, date and content div -->
       <br><br>
       {{#each comments}}
         {{id}} {{content}} {{date}} {{author_username}} <br>

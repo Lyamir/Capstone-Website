@@ -100,16 +100,7 @@ while state:
                     os.chdir(src3)
                     for file in files5:
                         if os.path.isfile(file):
-                            shutil.copy(file,dest3)
-                    src4 = r"/home/caikit/Documents/caikit/cases/teacher-led/integration"
-                    dest4 =r"/home/caikit/Documents/caikit/sites/capstone-blogsite"
-                    files7 = os.listdir(src4)
-                    files8 = os.listdir(dest4)
-                    os.chdir(src4)
-                    for file in files7:
-                        if os.path.isfile(file):
-                            shutil.copy(file,dest4)                    
-
+                            shutil.copy(file,dest3)                  
                     
                     subprocess.run(['git','init','--bare'],cwd = server_capstone_git)
                     subprocess.run(['git','init'], cwd=sites_blogsite)
