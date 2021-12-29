@@ -316,7 +316,7 @@ while state:
             if (confirmation == 'y' or confirmation == "Y"):
                 print("Resetting")
                 confirmationState = True
-                src = r"/home/caikit/Documents/caikit/.capstone-blogsite"
+                src = r"/home/caikit/Documents/caikit/sites/unaltered-capstone-blogsite"
                 dest = r"/home/caikit/Documents/caikit/capstone-blogsite"
                 files = os.listdir(src)
                 files2 = os.listdir(dest)
