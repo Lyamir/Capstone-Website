@@ -4,8 +4,10 @@ const Report = require('../model/report')
 
 const routerFunctions = {
 
-  //TODO: Update getPosts() here:
   getPosts: (req, res) => {
+    //TODO: Update getPosts() here:
+
+    //TODO: REMOVE with update
     res.render('index')
   },
 
