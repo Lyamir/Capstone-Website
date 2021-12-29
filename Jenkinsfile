@@ -13,11 +13,15 @@ pipeline{
     stages{
         stage('Build Step'){
             steps {
+
+                sh "npm install"
+
                 //Dockerization
                 sh "docker build -t $IMAGE:$TAG ."
                 //Adding tags to image
                 sh "docker tag $IMAGE:$TAG $NEXUS_ADDRESS/$IMAGE:$TAG"
                 //Running container and Docker cleanup
+                
                 sh '''
                 docker stop \$DEPLOYED_CONTAINER
                 docker rm \$DEPLOYED_CONTAINER
@@ -75,6 +79,8 @@ pipeline{
                 echo ""
                 echo "------------------------------------------------------------"
                 echo "Deployed here: http://$PROD_IP_ADD:8008"
+
+
             }
         }
     }

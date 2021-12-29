@@ -56,7 +56,7 @@ describe("Unit Tests", async function(){
         dateResult.should.equal(date);
         contentResult.should.equal(content);
 
-        await driver.findElement(By.xpath("//*[@id=\"updatepost\"]")).click();
+        await driver.findElement(By.xpath("/html/body/a[2]")).click();
         await driver.findElement(By.xpath("/html/body/div/div/form/div/button")).click();
 
         await driver.quit();
@@ -107,7 +107,7 @@ describe("Unit Tests", async function(){
 
         await driver.findElement(By.xpath("//*[contains(text(), \""+post.title+"\")]")).click();
 
-        await driver.findElement(By.xpath("//*[@id=\"updatepost\"]")).click();
+        await driver.findElement(By.xpath("/html/body/a[2]")).click();
 
         await driver.findElement(By.xpath("/html/body/div/div/form/div/input[1]")).clear();
         await driver.findElement(By.xpath("/html/body/div/div/form/div/input[1]")).sendKeys(testingUpdate);
@@ -129,12 +129,12 @@ describe("Unit Tests", async function(){
 
         await driver.findElement(By.xpath("//*[contains(text(), \""+testingUpdate+"\")]")).click();
 
-        await driver.findElement(By.xpath("//*[@id=\"commentauthor\"]")).sendKeys(testComment.author);
-        await driver.findElement(By.xpath("//*[@id=\"commentarea\"]")).sendKeys(testComment.comment);
-        await driver.findElement(By.xpath("//*[@id=\"commentsubmit\"]")).click();
+        await driver.findElement(By.xpath("/html/body/div/div/form/input")).sendKeys(testComment.author);
+        await driver.findElement(By.xpath("/html/body/div/div/form/textarea")).sendKeys(testComment.comment);
+        await driver.findElement(By.xpath("/html/body/div/div/form/button")).click();
 
         //Test if comment has been added
-        let resultingComment = await driver.findElements(By.xpath("/html/body/div/div/div[5]"));
+        let resultingComment = await driver.findElements(By.xpath("/html/body/div/div/br[2]"));
         resultingComment.should.not.be.empty;
         
         await driver.quit();
@@ -149,7 +149,7 @@ describe("Unit Tests", async function(){
 
         await driver.findElement(By.xpath("//*[contains(text(), \""+testingUpdate+"\")]")).click();
 
-        await driver.findElement(By.xpath("//*[@id=\"deletepost\"]")).click();
+        await driver.findElement(By.xpath("/html/body/a[3]")).click();
 
         //Test if post has been deleted in homepage
         await driver.navigate().to(address);
@@ -187,7 +187,7 @@ describe("Integration Testing", async function(){
         //Updates the created post
         await driver.navigate().to(address);
         await driver.findElement(By.xpath("//*[contains(text(), \""+post.title+"\")]")).click();
-        await driver.findElement(By.xpath("//*[@id=\"updatepost\"]")).click();
+        await driver.findElement(By.xpath("/html/body/a[2]")).click();
         await driver.findElement(By.xpath("/html/body/div/div/form/div/input[1]")).clear();
         await driver.findElement(By.xpath("/html/body/div/div/form/div/input[1]")).sendKeys(testingUpdate);
         await driver.findElement(By.xpath("/html/body/div/div/form/div/button")).click();
@@ -201,12 +201,12 @@ describe("Integration Testing", async function(){
         await driver.navigate().to(address);
         await driver.findElement(By.xpath("//*[contains(text(), \""+testingUpdate+"\")]")).click();
 
-        await driver.findElement(By.xpath("//*[@id=\"commentauthor\"]")).sendKeys(testComment.author);
-        await driver.findElement(By.xpath("//*[@id=\"commentarea\"]")).sendKeys(testComment.comment);
-        await driver.findElement(By.xpath("//*[@id=\"commentsubmit\"]")).click();
+        await driver.findElement(By.xpath("/html/body/div/div/form/input")).sendKeys(testComment.author);
+        await driver.findElement(By.xpath("/html/body/div/div/form/textarea")).sendKeys(testComment.comment);
+        await driver.findElement(By.xpath("/html/body/div/div/form/button")).click();
 
         //Test if comment has been added
-        let resultingComment = await driver.findElements(By.xpath("/html/body/div/div/div[5]"));
+        let resultingComment = await driver.findElements(By.xpath("/html/body/div/div/br[2]"));
         resultingComment.should.not.be.empty;
         
         await driver.quit();
@@ -220,7 +220,7 @@ describe("Integration Testing", async function(){
         //Delete the post test
         await driver.navigate().to(address);
         await driver.findElement(By.xpath("//*[contains(text(), \""+testingUpdate+"\")]")).click();
-        await driver.findElement(By.xpath("//*[@id=\"deletepost\"]")).click();
+        await driver.findElement(By.xpath("/html/body/a[3]")).click();
 
         //Test if post has been deleted in homepage
         await driver.navigate().to(address);
