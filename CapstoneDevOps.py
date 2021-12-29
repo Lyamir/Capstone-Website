@@ -8,22 +8,22 @@ import json
 import signal
 import shutil
 import getpass
-from git.repo.base import Repo
+import subprocess
+from git import Repo
 
 state= True;
 caseState = True;
 
+
 confirmationState = True;
 
-def git_push():
-    try:
-        repo = Repo("/home/caikit/Documents/caikit/sites/capstone-blogsite")
-        repo.index.add(".")
-        repo.index.commit("Initial Commit")
-        origin = repo.remote(name='origin')
-        origin.push()
-    except:
-        print('Some error occured while pushing the code')
+sites_blogsite= "/home/caikit/Documents/caikit/sites/capstone-blogsite"
+roles_programmer1= "/home/caikit/Documents/caikit/roles/programmer1"
+roles_programmer2= "/home/caikit/Documents/caikit/roles/programmer2"
+roles_devopsengineer= "/home/caikit/Documents/caikit/roles/devopsengineer"
+roles_qaengineer= "/home/caikit/Documents/caikit/roles/qaengineer"
+roles_techlead= "/home/caikit/Documents/caikit/roles/techlead"
+server_capstone_git= "/home/caikit/Documents/caikit/git-server/capstone-blogsite.git"
 
 #Loops while the user has not selected a valid choice
 while state:
@@ -32,6 +32,7 @@ while state:
         print("Select 2 for Continuous Testing")
         print("Select 3 for Continuous Deployment and Delivery")
         print("Select 4 for Resetting the toolkit")
+        print("Select 5 to exit")        
         #Asks for the user input in choosing from the three Key concepts
         option = int(input("Enter your choice: "))
         if option == 1:
@@ -43,56 +44,26 @@ while state:
                 print("Select 1 for Teacher-led case")
                 print("Select 2 for Self-learned case")
                 print("Select 3 for Project-based case")
-                print("Select 4 to reset the case")
+
                 caseoption = int(input("Enter your choice: "))
                 if caseoption == 1:
                     print("You have chosen the Teacher-led case")
                     print("Please wait while we prepare the case")
-                    #Copies the files from src directory into the dest directory for this use it moves the file for the teacher led case for 
-                    #integration into the model to simulate the case
-                    #Change the path directory to fit where the Capstone-Website is
-                    src = r"/home/caikit/Documents/caikit/capstone-blogsite/cases/teacher-led_cases/integration/model"
-                    dest = r"/home/caikit/Documents/caikit/capstone-blogsite/model"
-                    files = os.listdir(src)
-                    files2 = os.listdir(dest)
-                    os.chdir(src)
-                    for file in files:
-                        if os.path.isfile(file):
-                            shutil.copy(file,dest)
-                    src2 = r"/home/caikit/Documents/caikit/capstone-blogsite/cases/teacher-led_cases/integration/controller"
-                    dest2 = r"/home/caikit/Documents/caikit/capstone-blogsite/controller"
-                    files3 = os.listdir(src2)
-                    files4 = os.listdir(dest2)
-                    os.chdir(src2)
-                    for file in files3:
-                        if os.path.isfile(file):
-                            shutil.copy(file,dest2)
-                    src3 = r"/home/caikit/Documents/caikit/capstone-blogsite/cases/teacher-led_cases/integration/views"
-                    dest3 =r"/home/caikit/Documents/caikit/capstone-blogsite/views"
-                    files5 = os.listdir(src3)
-                    files6 = os.listdir(dest3)
-                    os.chdir(src3)
-                    for file in files5:
-                        if os.path.isfile(file):
-                            shutil.copy(file,dest3)
-                    src4 = r"/home/caikit/Documents/caikit/capstone-blogsite/cases/teacher-led_cases/integration"
-                    dest4 =r"/home/caikit/Documents/caikit/capstone-blogsite/"
-                    files7 = os.listdir(src4)
-                    files8 = os.listdir(dest4)
-                    os.chdir(src4)
-                    for file in files7:
-                        if os.path.isfile(file):
-                            shutil.copy(file,dest4)                    
-                    shutil.rmtree(r"/home/caikit/Documents/caikit/roles/programmer1/", ignore_errors= True)
-                    shutil.rmtree(r"/home/caikit/Documents/caikit/roles/programmer2/", ignore_errors= True)
-                    shutil.rmtree(r"/home/caikit/Documents/caikit/roles/devopsengineer/", ignore_errors= True)
-                    shutil.rmtree(r"/home/caikit/Documents/caikit/roles/qaengineer/", ignore_errors= True)
-                    shutil.rmtree(r"/home/caikit/Documents/caikit/roles/techlead/", ignore_errors= True)
-                    shutil.rmtree(r"/home/caikit/Documents/caikit/git-server/capstone-blogsite.git", ignore_errors= True)
-                    os.makedirs("/home/caikit/Documents/caikit/git-server/capstone-blogsite.git")
-                    Repo.init("/home/caikit/Documents/caikit/git-server/capstone-blogsite.git")
-                    shutil.rmtree(r"/home/caikit/Documents/caikit/sites/capstone-blogsite",ignore_errors=True)
-                    os.makedirs("/home/caikit/Documents/caikit/sites/capstone-blogsite/Capstone-Website")
+                    subprocess.run(['rm','-r', roles_programmer1])
+                    subprocess.run(['rm','-r', roles_programmer2])
+                    subprocess.run(['rm','-r', roles_devopsengineer])
+                    subprocess.run(['rm','-r', roles_qaengineer])
+                    subprocess.run(['rm','-r', roles_techlead])
+                    subprocess.run(['rm','-r', server_capstone_git])
+                    subprocess.run(['rm','-r', sites_blogsite])
+                    subprocess.run(['mkdir',roles_programmer1])
+                    subprocess.run(['mkdir',roles_programmer2])                    
+                    subprocess.run(['mkdir',roles_devopsengineer])
+                    subprocess.run(['mkdir',roles_qaengineer])
+                    subprocess.run(['mkdir',roles_techlead])                                        
+                    subprocess.run(['mkdir',server_capstone_git])                    
+                    subprocess.run(['mkdir',sites_blogsite])
+                    
                     src5 = r"/home/caikit/Documents/caikit/sites/unaltered-capstone-blogsite"
                     dest5 = r"/home/caikit/Documents/caikit/sites/capstone-blogsite"
                     shutil.copytree(src5,dest5,symlinks=False,ignore=None,ignore_dangling_symlinks=False,dirs_exist_ok=True)
@@ -100,9 +71,50 @@ while state:
                     src6 = r"/home/caikit/Documents/caikit/sites/unaltered-capstone-blogsite/"
                     dest6 = r"/home/caikit/Documents/caikit/sites/capstone-blogsite"
                     shutil.copytree(src6,dest6,symlinks=False,ignore=None,ignore_dangling_symlinks=False,dirs_exist_ok=True)
+                 
+                    #Copies the files from src directory into the dest directory for this use it moves the file for the teacher led case for 
+                    #integration into the model to simulate the case
+                    #Change the path directory to fit where the Capstone-Website is
+                    src = r"/home/caikit/Documents/caikit/cases/teacher-led/integration/model"
+                    dest = r"/home/caikit/Documents/caikit/sites/capstone-blogsite/model"
+                    files = os.listdir(src)
+                    files2 = os.listdir(dest)
+                    os.chdir(src)
+                    for file in files:
+                        if os.path.isfile(file):
+                            shutil.copy(file,dest)
+                    src2 = r"/home/caikit/Documents/caikit/cases/teacher-led/integration/controller"
+                    dest2 = r"/home/caikit/Documents/caikit/sites/capstone-blogsite/controller"
+                    files3 = os.listdir(src2)
+                    files4 = os.listdir(dest2)
+                    os.chdir(src2)
+                    for file in files3:
+                        if os.path.isfile(file):
+                            shutil.copy(file,dest2)
+                    src3 = r"/home/caikit/Documents/caikit/cases/teacher-led/integration/views"
+                    dest3 =r"/home/caikit/Documents/caikit/sites/capstone-blogsite/views"
+                    files5 = os.listdir(src3)
+                    files6 = os.listdir(dest3)
+                    os.chdir(src3)
+                    for file in files5:
+                        if os.path.isfile(file):
+                            shutil.copy(file,dest3)
+                    src4 = r"/home/caikit/Documents/caikit/cases/teacher-led/integration"
+                    dest4 =r"/home/caikit/Documents/caikit/sites/capstone-blogsite"
+                    files7 = os.listdir(src4)
+                    files8 = os.listdir(dest4)
+                    os.chdir(src4)
+                    for file in files7:
+                        if os.path.isfile(file):
+                            shutil.copy(file,dest4)                    
 
-                    Repo.init("/home/caikit/Documents/caikit/sites/capstone-blogsite")
-                    git_push
+                    
+                    subprocess.run(['git','init','--bare'],cwd = server_capstone_git)
+                    subprocess.run(['git','init'], cwd=sites_blogsite)
+                    subprocess.run(['git','add','.'], cwd=sites_blogsite)
+                    subprocess.run(['git','commit','-m','Initial commit'], cwd=sites_blogsite)
+                    subprocess.run(['git','remote','add','origin',server_capstone_git],cwd=sites_blogsite)
+                    subprocess.run(['git','push','origin','master'],cwd=sites_blogsite)
 
                     caseState = False
                     confirmationState = False
@@ -142,14 +154,53 @@ while state:
                 if caseoption == 1:
                     print("You have chosen the Teacher-led case")
                     print("Please wait while we prepare the case")
-                    # src = r"/home/caikit/Documents/caikit/capstone-blogsite/cases/teacher-led_cases/testing"
-                    # dest = r"/home/caikit/Documents/caikit/capstone-blogsite/model"
-                    # files = os.listdir(src)
-                    # files2 = os.listdir(dest)
-                    # os.chdir(src)
-                    # for file in files:
-                    #     if os.path.isfile(file):
-                    #         shutil.copy(file,dest)
+                    subprocess.run(['rm','-r', roles_programmer1])
+                    subprocess.run(['rm','-r', roles_programmer2])
+                    subprocess.run(['rm','-r', roles_devopsengineer])
+                    subprocess.run(['rm','-r', roles_qaengineer])
+                    subprocess.run(['rm','-r', roles_techlead])
+                    subprocess.run(['rm','-r', server_capstone_git])
+                    subprocess.run(['rm','-r', sites_blogsite])
+                    subprocess.run(['mkdir',roles_programmer1])
+                    subprocess.run(['mkdir',roles_programmer2])                    
+                    subprocess.run(['mkdir',roles_devopsengineer])
+                    subprocess.run(['mkdir',roles_qaengineer])
+                    subprocess.run(['mkdir',roles_techlead])                                        
+                    subprocess.run(['mkdir',server_capstone_git])                    
+                    subprocess.run(['mkdir',sites_blogsite])
+
+                    src5 = r"/home/caikit/Documents/caikit/sites/unaltered-capstone-blogsite"
+                    dest5 = r"/home/caikit/Documents/caikit/sites/capstone-blogsite"
+                    shutil.copytree(src5,dest5,symlinks=False,ignore=None,ignore_dangling_symlinks=False,dirs_exist_ok=True)
+
+                    src6 = r"/home/caikit/Documents/caikit/sites/unaltered-capstone-blogsite/"
+                    dest6 = r"/home/caikit/Documents/caikit/sites/capstone-blogsite"
+                    shutil.copytree(src6,dest6,symlinks=False,ignore=None,ignore_dangling_symlinks=False,dirs_exist_ok=True)
+
+                    src = r"/home/caikit/Documents/caikit/sites/cases/teacher-led_cases/testing/model"
+                    dest = r"/home/caikit/Documents/caikit/sites/model"
+                    files = os.listdir(src)
+                    files2 = os.listdir(dest)
+                    os.chdir(src)
+                    for file in files:
+                        if os.path.isfile(file):
+                            shutil.copy(file,dest)
+                    src2 = r"/home/caikit/Documents/caikit/sites/cases/teacher-led_cases/testing/test"
+                    dest2 = r"/home/caikit/Documents/caikit/sites/test"
+                    files3 = os.listdir(src2)
+                    files4 = os.listdir(dest2)
+                    os.chdir(src2)
+                    for file in files3:
+                        if os.path.isfile(file):
+                            shutil.copy(file,dest2)  
+
+                    subprocess.run(['git','init','--bare'],cwd = server_capstone_git)
+                    subprocess.run(['git','init'], cwd=sites_blogsite)
+                    subprocess.run(['git','add','.'], cwd=sites_blogsite)
+                    subprocess.run(['git','commit','-m','Initial commit'], cwd=sites_blogsite)
+                    subprocess.run(['git','remote','add','origin',server_capstone_git],cwd=sites_blogsite)
+                    subprocess.run(['git','push','origin','master'],cwd=sites_blogsite)
+
                     caseState = False
                     confirmationState = False
                 elif caseoption == 2:
@@ -187,14 +238,53 @@ while state:
                 if caseoption == 1:
                     print("You have chosen the Teacher-led case")
                     print("Please wait while we prepare the case")
-                    # src = r"/home/caikit/Documents/caikit/capstone-blogsite/cases/teacher-led_cases/deployment"
-                    # dest = r"/home/caikit/Documents/caikit/capstone-blogsite/model"
-                    # files = os.listdir(src)
-                    # files2 = os.listdir(dest)
-                    # os.chdir(src)
-                    # for file in files:
-                    #     if os.path.isfile(file):
-                    #         shutil.copy(file,dest)
+                    subprocess.run(['rm','-r', roles_programmer1])
+                    subprocess.run(['rm','-r', roles_programmer2])
+                    subprocess.run(['rm','-r', roles_devopsengineer])
+                    subprocess.run(['rm','-r', roles_qaengineer])
+                    subprocess.run(['rm','-r', roles_techlead])
+                    subprocess.run(['rm','-r', server_capstone_git])
+                    subprocess.run(['rm','-r', sites_blogsite])
+                    subprocess.run(['mkdir',roles_programmer1])
+                    subprocess.run(['mkdir',roles_programmer2])                    
+                    subprocess.run(['mkdir',roles_devopsengineer])
+                    subprocess.run(['mkdir',roles_qaengineer])
+                    subprocess.run(['mkdir',roles_techlead])                                        
+                    subprocess.run(['mkdir',server_capstone_git])                    
+                    subprocess.run(['mkdir',sites_blogsite])
+
+                    src5 = r"/home/caikit/Documents/caikit/sites/unaltered-capstone-blogsite"
+                    dest5 = r"/home/caikit/Documents/caikit/sites/capstone-blogsite"
+                    shutil.copytree(src5,dest5,symlinks=False,ignore=None,ignore_dangling_symlinks=False,dirs_exist_ok=True)
+
+                    src6 = r"/home/caikit/Documents/caikit/sites/unaltered-capstone-blogsite/"
+                    dest6 = r"/home/caikit/Documents/caikit/sites/capstone-blogsite"
+                    shutil.copytree(src6,dest6,symlinks=False,ignore=None,ignore_dangling_symlinks=False,dirs_exist_ok=True)
+
+                    src = r"/home/caikit/Documents/caikit/sites/cases/teacher-led/delivery-and-deployment/model"
+                    dest = r"/home/caikit/Documents/caikit/sites/model"
+                    files = os.listdir(src)
+                    files2 = os.listdir(dest)
+                    os.chdir(src)
+                    for file in files:
+                        if os.path.isfile(file):
+                            shutil.copy(file,dest)
+                    src2 = r"/home/caikit/Documents/caikit/sites/cases/teacher-led/delivery-and-deployment"
+                    dest2 = r"/home/caikit/Documents/caikit/sites/"
+                    files3 = os.listdir(src2)
+                    files4 = os.listdir(dest2)
+                    os.chdir(src2)
+                    for file in files3:
+                        if os.path.isfile(file):
+                            shutil.copy(file,dest2) 
+                     
+                    subprocess.run(['git','init','--bare'],cwd = server_capstone_git)
+                    subprocess.run(['git','init'], cwd=sites_blogsite)
+                    subprocess.run(['git','add','.'], cwd=sites_blogsite)
+                    subprocess.run(['git','commit','-m','Initial commit'], cwd=sites_blogsite)
+                    subprocess.run(['git','remote','add','origin',server_capstone_git],cwd=sites_blogsite)
+                    subprocess.run(['git','push','origin','master'],cwd=sites_blogsite)
+
                     caseState = False
                     confirmationState = False
                 elif caseoption == 2:
@@ -233,12 +323,15 @@ while state:
                 os.chdir(src)
                 shutil.rmtree(dest, ignore_errors= True)
                 shutil.copytree(src, dest, dirs_exist_ok=True)
-                # insert copying of hidden file to case file
+                
                 caseState = False
                 exit()
             elif (confirmation == 'n'or confirmation == 'N'):
                 print("Going back to case selection")
                 state = False
+        elif option == 5:
+            print("Exiting")
+            exit()        
         else:
             print('Unknown Option try again')
 
