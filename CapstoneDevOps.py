@@ -44,7 +44,6 @@ while state:
                 print("Select 1 for Teacher-led case")
                 print("Select 2 for Self-learned case")
                 print("Select 3 for Project-based case")
-
                 caseoption = int(input("Enter your choice: "))
                 if caseoption == 1:
                     print("You have chosen the Teacher-led case")
@@ -57,12 +56,15 @@ while state:
                     subprocess.run(['rm','-r', server_capstone_git])
                     subprocess.run(['rm','-r', sites_blogsite])
                     subprocess.run(['mkdir',roles_programmer1])
-                    subprocess.run(['mkdir',roles_programmer2])                    
+                    subprocess.run(['mkdir',roles_programmer2])                   
                     subprocess.run(['mkdir',roles_devopsengineer])
                     subprocess.run(['mkdir',roles_qaengineer])
-                    subprocess.run(['mkdir',roles_techlead])                                        
+                    subprocess.run(['mkdir',roles_techlead])       
                     subprocess.run(['mkdir',server_capstone_git])                    
                     subprocess.run(['mkdir',sites_blogsite])
+                    subprocess.run(['sudo','chmod','777','/home/caikit/Documents/caikit/roles/*'])
+                    subprocess.run(['sudo','chmod','777','/home/caikit/Documents/caikit/sites/capstone-blogsite'])
+                    subprocess.run(['sudo','chmod','777','/home/caikit/Documents/caikit/git-server/capstone-blogsite.git'])
                     
                     src5 = r"/home/caikit/Documents/caikit/sites/unaltered-capstone-blogsite"
                     dest5 = r"/home/caikit/Documents/caikit/sites/capstone-blogsite"
@@ -149,7 +151,6 @@ while state:
                 print("Select 1 for Teacher-led case")
                 print("Select 2 for Self-learned case")
                 print("Select 3 for Project-based case")
-                print("Select 4 to reset the case")
                 caseoption = int(input("Enter your choice: "))
                 if caseoption == 1:
                     print("You have chosen the Teacher-led case")
@@ -168,6 +169,9 @@ while state:
                     subprocess.run(['mkdir',roles_techlead])                                        
                     subprocess.run(['mkdir',server_capstone_git])                    
                     subprocess.run(['mkdir',sites_blogsite])
+                    subprocess.run(['sudo','chmod','777','/home/caikit/Documents/caikit/roles/*'])
+                    subprocess.run(['sudo','chmod','777','/home/caikit/Documents/caikit/sites/capstone-blogsite'])
+                    subprocess.run(['sudo','chmod','777','/home/caikit/Documents/caikit/git-server/capstone-blogsite.git'])
 
                     src5 = r"/home/caikit/Documents/caikit/sites/unaltered-capstone-blogsite"
                     dest5 = r"/home/caikit/Documents/caikit/sites/capstone-blogsite"
@@ -177,7 +181,7 @@ while state:
                     dest6 = r"/home/caikit/Documents/caikit/sites/capstone-blogsite"
                     shutil.copytree(src6,dest6,symlinks=False,ignore=None,ignore_dangling_symlinks=False,dirs_exist_ok=True)
 
-                    src = r"/home/caikit/Documents/caikit/sites/cases/teacher-led_cases/testing/model"
+                    src = r"/home/caikit/Documents/caikit/sites/cases/teacher-led/testing/model"
                     dest = r"/home/caikit/Documents/caikit/sites/model"
                     files = os.listdir(src)
                     files2 = os.listdir(dest)
@@ -185,7 +189,7 @@ while state:
                     for file in files:
                         if os.path.isfile(file):
                             shutil.copy(file,dest)
-                    src2 = r"/home/caikit/Documents/caikit/sites/cases/teacher-led_cases/testing/test"
+                    src2 = r"/home/caikit/Documents/caikit/sites/cases/teacher-led/testing/test"
                     dest2 = r"/home/caikit/Documents/caikit/sites/test"
                     files3 = os.listdir(src2)
                     files4 = os.listdir(dest2)
@@ -233,7 +237,6 @@ while state:
                 print("Select 1 for Teacher-led case")
                 print("Select 2 for Self-learned case")
                 print("Select 3 for Project-based case")
-                print("Select 4 to reset the case")
                 caseoption = int(input("Enter your choice: "))
                 if caseoption == 1:
                     print("You have chosen the Teacher-led case")
@@ -252,6 +255,9 @@ while state:
                     subprocess.run(['mkdir',roles_techlead])                                        
                     subprocess.run(['mkdir',server_capstone_git])                    
                     subprocess.run(['mkdir',sites_blogsite])
+                    subprocess.run(['sudo','chmod','777','/home/caikit/Documents/caikit/roles/*'])
+                    subprocess.run(['sudo','chmod','777','/home/caikit/Documents/caikit/sites/capstone-blogsite'])
+                    subprocess.run(['sudo','chmod','777','/home/caikit/Documents/caikit/git-server/capstone-blogsite.git'])
 
                     src5 = r"/home/caikit/Documents/caikit/sites/unaltered-capstone-blogsite"
                     dest5 = r"/home/caikit/Documents/caikit/sites/capstone-blogsite"
