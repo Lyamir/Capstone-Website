@@ -91,23 +91,7 @@ while state:
                     for file in files:
                         if os.path.isfile(file):
                             shutil.copy(file,dest)
-                    src2 = r"/home/caikit/Documents/caikit/cases/teacher-led/integration/controller"
-                    dest2 = r"/home/caikit/Documents/caikit/sites/capstone-blogsite/controller"
-                    files3 = os.listdir(src2)
-                    files4 = os.listdir(dest2)
-                    os.chdir(src2)
-                    for file in files3:
-                        if os.path.isfile(file):
-                            shutil.copy(file,dest2)
-                    src3 = r"/home/caikit/Documents/caikit/cases/teacher-led/integration/views"
-                    dest3 =r"/home/caikit/Documents/caikit/sites/capstone-blogsite/views"
-                    files5 = os.listdir(src3)
-                    files6 = os.listdir(dest3)
-                    os.chdir(src3)
-                    for file in files5:
-                        if os.path.isfile(file):
-                            shutil.copy(file,dest3)
-                  
+
                     subprocess.run(['git','init','--bare'],cwd = server_capstone_git)
                     subprocess.run(['git','init'], cwd=sites_blogsite)
                     subprocess.run(['git','add','.'], cwd=sites_blogsite)
