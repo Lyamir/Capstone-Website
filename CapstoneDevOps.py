@@ -68,6 +68,8 @@ while state:
                     subprocess.run(['sudo','chmod','777','/home/caikit/Documents/caikit/roles/qaenginner'])
                     subprocess.run(['sudo','chmod','777','/home/caikit/Documents/caikit/roles/techlead'])
                     subprocess.run(['sudo','chmod','777','/home/caikit/Documents/caikit/sites/capstone-blogsite'])
+                    subprocess.run(['sudo','chmod','777','/home/caikit/Documents/caikit/git-server/capstone-blogsite'])
+                    subprocess.run(['sudo','chown','-R','caikit','/home/caikit/Documents/caikit/git-server/capstone-blogsite.git'])
                     subprocess.run(['sudo','chmod','777','/home/caikit/Documents/caikit/git-server/capstone-blogsite.git'])
                     
                     src5 = r"/home/caikit/Documents/caikit/sites/unaltered-capstone-blogsite"
@@ -170,6 +172,8 @@ while state:
                     subprocess.run(['sudo','chmod','777','/home/caikit/Documents/caikit/roles/qaenginner'])
                     subprocess.run(['sudo','chmod','777','/home/caikit/Documents/caikit/roles/techlead'])
                     subprocess.run(['sudo','chmod','777','/home/caikit/Documents/caikit/sites/capstone-blogsite'])
+                    subprocess.run(['sudo','chown','-R','caikit','/home/caikit/Documents/caikit/git-server/capstone-blogsite.git'])
+                    #sudo chown -r caikit ~/Documents/caikit/git-server/capstone-blogsite.git
                     subprocess.run(['sudo','chmod','777','/home/caikit/Documents/caikit/git-server/capstone-blogsite.git'])
 
                     src5 = r"/home/caikit/Documents/caikit/sites/unaltered-capstone-blogsite"
@@ -261,6 +265,7 @@ while state:
                     subprocess.run(['sudo','chmod','777','/home/caikit/Documents/caikit/roles/qaenginner'])
                     subprocess.run(['sudo','chmod','777','/home/caikit/Documents/caikit/roles/techlead'])
                     subprocess.run(['sudo','chmod','777','/home/caikit/Documents/caikit/sites/capstone-blogsite'])
+                    subprocess.run(['sudo','chown','-R','caikit','/home/caikit/Documents/caikit/git-server/capstone-blogsite.git'])
                     subprocess.run(['sudo','chmod','777','/home/caikit/Documents/caikit/git-server/capstone-blogsite.git'])
 
                     src5 = r"/home/caikit/Documents/caikit/sites/unaltered-capstone-blogsite"
