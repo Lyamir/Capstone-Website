@@ -68,7 +68,7 @@ while state:
                     subprocess.run(['sudo','chmod','777',roles_qaengineer])
                     subprocess.run(['sudo','chmod','777',roles_techlead])
                     subprocess.run(['sudo','chmod','777',sites_blogsite])
-                    subprocess.run(['sudo','chown','-R','caikit',server_capstone_git])
+                    
                     subprocess.run(['sudo','chmod','777',server_capstone_git])
                     
                     src5 = r"/home/caikit/Documents/caikit/sites/unaltered-capstone-blogsite"
@@ -97,7 +97,7 @@ while state:
                     subprocess.run(['git','commit','-m','Initial commit'], cwd=sites_blogsite)
                     subprocess.run(['git','remote','add','origin',server_capstone_git],cwd=sites_blogsite)
                     subprocess.run(['git','push','origin','master'],cwd=sites_blogsite)
-
+                    subprocess.run(['sudo','chown','-R','caikit',server_capstone_git])
                     caseState = False
                     confirmationState = False
                 elif caseoption == 2:
