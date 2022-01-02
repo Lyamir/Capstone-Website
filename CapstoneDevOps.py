@@ -189,6 +189,7 @@ while state:
                     subprocess.run(['git','commit','-m','Initial commit'], cwd=sites_blogsite)
                     subprocess.run(['git','remote','add','origin',server_capstone_git],cwd=sites_blogsite)
                     subprocess.run(['git','push','origin','master'],cwd=sites_blogsite)
+                    subprocess.run(['sudo','chown','-R','caikit',server_capstone_git])                    
 
                     caseState = False
                     confirmationState = False
@@ -280,7 +281,8 @@ while state:
                     subprocess.run(['git','commit','-m','Initial commit'], cwd=sites_blogsite)
                     subprocess.run(['git','remote','add','origin',server_capstone_git],cwd=sites_blogsite)
                     subprocess.run(['git','push','origin','master'],cwd=sites_blogsite)
-
+                    subprocess.run(['sudo','chown','-R','caikit',server_capstone_git])
+                    
                     caseState = False
                     confirmationState = False
                 elif caseoption == 2:
