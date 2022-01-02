@@ -134,7 +134,7 @@ describe("Unit Tests", async function(){
         await driver.findElement(By.xpath("/html/body/div/div/form/button")).click();
 
         //Test if comment has been added
-        let resultingComment = await driver.findElements(By.xpath("/html/body/div/div/br[2]"));
+        let resultingComment = await driver.findElements(By.xpath("/html/body/div/div/div[5]"));
         resultingComment.should.not.be.empty;
         
         await driver.quit();
@@ -206,7 +206,7 @@ describe("Integration Testing", async function(){
         await driver.findElement(By.xpath("/html/body/div/div/form/button")).click();
 
         //Test if comment has been added
-        let resultingComment = await driver.findElements(By.xpath("/html/body/div/div/br[2]"));
+        let resultingComment = await driver.findElements(By.xpath("/html/body/div/div/div[5]"));
         resultingComment.should.not.be.empty;
         
         await driver.quit();
