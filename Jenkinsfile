@@ -4,7 +4,7 @@ pipeline{
     environment{
         NEXUS_ADDRESS = 'localhost:8083'
         IMAGE = 'capstone_blogsite'
-        TAG = '2.0'
+        TAG = '1.0'
         CONTAINER = 'containerized_capstone_blogsite'
         DEPLOYED_CONTAINER = 'containerized_blogsite'
         PROD_IP_ADD = '192.168.56.102'
