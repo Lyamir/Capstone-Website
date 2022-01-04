@@ -9,10 +9,6 @@ const Post = function(title, content, date, author_username) {
 
   // TODO: Insert Post.getAll() and Post.create
 
-//Insert Post.create() here
-
-//Insert Post.getAll here
-
 Post.getPost = (id, result) => {
   db.query('SELECT * FROM posts WHERE id = ?', [id], (err, res) =>{
     if (err) {
