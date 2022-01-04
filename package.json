@@ -16,15 +16,13 @@
     "mocha-junit-reporter": "^2.0.2",
     "mysql": "^2.18.1",
     "mysql2": "^2.3.2",
-    "nodemon": "^2.0.13",
     "path": "^0.12.7",
     "selenium-webdriver": "^4.1.0"
   },
   "devDependencies": {},
   "scripts": {
     "start": "node index.js",
-    "test": "mocha --exit --no-timeouts",
-    "dev": "nodemon index.js"
+    "test": "mocha --exit --no-timeouts"
   },
   "repository": {
     "type": "git",
