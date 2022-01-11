@@ -9,7 +9,7 @@ pipeline{
         DEPLOYED_CONTAINER = 'containerized_blogsite'
         PROD_IP_ADD = '192.168.56.102'
         CONTAINER_IP = '172.18.0.3'
-        CONTAINER_PORT = '8009'
+        CONTAINER_PORT = '8008'
         APP_PORT= '3000'
     }
 
