@@ -9,6 +9,8 @@ pipeline{
         DEPLOYED_CONTAINER = 'containerized_blogsite'
         PROD_IP_ADD = '192.168.56.102'
         CONTAINER_IP = '172.18.0.3'
+        CONTAINER_PORT = '8008'
+        APP_PORT= '3000'
     }
 
     stages{
@@ -24,9 +26,7 @@ pipeline{
                 //Running container and Docker cleanup
                 
                 sh '''
-                docker stop \$DEPLOYED_CONTAINER
-                docker rm \$DEPLOYED_CONTAINER
-                docker run -d -p 8008:3000 --restart unless-stopped --net mynetwork --ip \$CONTAINER_IP --name \$DEPLOYED_CONTAINER \$NEXUS_ADDRESS/\$IMAGE:\$TAG
+                docker run -d -p \$CONTAINER_PORT:\$APP_PORT --restart unless-stopped --net mynetwork --ip \$CONTAINER_IP --name \$DEPLOYED_CONTAINER \$NEXUS_ADDRESS/\$IMAGE:\$TAG
                 docker system prune -f
                 '''
             }
@@ -60,7 +60,13 @@ pipeline{
             steps{
                 //Prepare container to be deployed.
                 sh "docker save $NEXUS_ADDRESS/$IMAGE > ./ignore-this/blogsite.tar"
-            
+                
+                //Stops the build container
+                sh '''
+                docker stop \$DEPLOYED_CONTAINER
+                docker rm \$DEPLOYED_CONTAINER
+                '''
+
                 //Publish image to ftp server
                 withCredentials([usernamePassword(credentialsId: 'ftp', passwordVariable: 'ftp_pass', usernameVariable: 'ftp_user')]) {
                     sh ''' 
@@ -72,14 +78,14 @@ pipeline{
                 sh '''
                     [ -d ~/.ssh ] || mkdir ~/.ssh && chmod 0700 ~/.ssh
                     ssh-keyscan -t rsa,dsa \$PROD_IP_ADD >> ~/.ssh/known_hosts
-                    ssh -tt caikit@\$PROD_IP_ADD 'docker stop containerized_blogsite; docker rm containerized_blogsite; docker load < /home/caikit/ftp/files/blogsite.tar; docker run -d -p 8008:3000 --restart unless-stopped --net mynetwork --ip \$CONTAINER_IP --name \$DEPLOYED_CONTAINER \$NEXUS_ADDRESS/\$IMAGE:\$TAG; docker system prune -f'
+                    ssh -tt caikit@\$PROD_IP_ADD 'docker stop containerized_blogsite; docker rm containerized_blogsite; docker load < /home/caikit/ftp/files/blogsite.tar; docker run -d -p \$CONTAINER_PORT:\$APP_PORT --restart unless-stopped --net mynetwork --ip \$CONTAINER_IP --name \$DEPLOYED_CONTAINER \$NEXUS_ADDRESS/\$IMAGE:\$TAG; docker system prune -f'
                 '''
                 }
 
                 //Finished
                 echo ""
                 echo "------------------------------------------------------------"
-                echo "Deployed here: http://$PROD_IP_ADD:8008"
+                echo "Deployed here: http://$PROD_IP_ADD:\$CONTAINER_PORT"
 
 
             }
