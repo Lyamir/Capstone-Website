@@ -1,3 +1,5 @@
+from asyncio.subprocess import PIPE
+from doctest import OutputChecker
 import os
 import sys
 import subprocess
@@ -17,12 +19,34 @@ caseState = True;
 
 confirmationState = True;
 
-sites_blogsite= "/home/caikit/Documents/caikit/sites/capstone-blogsite"
+root_folder = "/home/caikit/Documents/caikit/"
+cases_folder = "/home/caikit/Documents/caikit/cases/"
+cases_teacher_led="/home/caikit/Documents/caikit/cases/teacher-led/"
+cases_student_led="/home/caikit/Documents/caikit/cases/student-led/"
+cases_project_based="/home/caikit/Documents/caikit/cases/project-based/"
+teacher_integ="/home/caikit/Documents/caikit/cases/teacher-led/integration/"
+teacher_test="/home/caikit/Documents/caikit/cases/teacher-led/testing/"
+teacher_dd="/home/caikit/Documents/caikit/cases/teacher-led/delivery-and-deployment/"
+student_integ="/home/caikit/Documents/caikit/cases/student-led/integration/"
+student_test="/home/caikit/Documents/caikit/cases/student-led/testing"
+student_dd="/home/caikit/Documents/caikit/cases/student-led/delivery-and-deployment/"
+proj_integ="/home/caikit/Documents/caikit/cases/project-based/integration/"
+proj_test="/home/caikit/Documents/caikit/cases/project-based/testing/"
+proj_dd="/home/caikit/Documents/caikit/cases/project-based/delivery-and-deployment/"
+root_roles="/home/caikit/Documents/caikit/roles/"
 roles_programmer1= "/home/caikit/Documents/caikit/roles/programmer1"
 roles_programmer2= "/home/caikit/Documents/caikit/roles/programmer2"
 roles_devopsengineer= "/home/caikit/Documents/caikit/roles/devopsengineer"
 roles_qaengineer= "/home/caikit/Documents/caikit/roles/qaengineer"
 roles_techlead= "/home/caikit/Documents/caikit/roles/techlead"
+sites_root="/home/caikit/Documents/caikit/sites/"
+sites_blogsite= "/home/caikit/Documents/caikit/sites/capstone-blogsite"
+sites_messaging="/home/caikit/Documents/caikit/sites/capstone-messaging"
+sites_todolist="/home/caikit/Documents/caikit/sites/capstone-todolist"
+UA_blogsite="/home/caikit/Documents/caikit/sites/unaltered-capstone-blogsite"
+UA_messaging="/home/caikit/Documents/caikit/sites/unaltered-capstone-messaging"
+UA_todolist="/home/caikit/Documents/caikit/sites/unaltered-capstone-todolist"
+git_server="/home/caikit/Documents/caikit/git-server"
 server_capstone_git= "/home/caikit/Documents/caikit/git-server/capstone-blogsite.git"
 
 #Loops while the user has not selected a valid choice
@@ -314,14 +338,52 @@ while state:
             if (confirmation == 'y' or confirmation == "Y"):
                 print("Resetting")
                 confirmationState = True
-                src = r"/home/caikit/Documents/caikit/sites/unaltered-capstone-blogsite"
-                dest = r"/home/caikit/Documents/caikit/capstone-blogsite"
-                files = os.listdir(src)
-                files2 = os.listdir(dest)
-                os.chdir(src)
-                shutil.rmtree(dest, ignore_errors= True)
-                shutil.copytree(src, dest, dirs_exist_ok=True)
-                
+                subprocess.run(['sudo','rm','-d','-r',root_folder])
+                subprocess.run(['sudo','mkdir',root_folder])
+                subprocess.run(['sudo','mkdir',cases_folder])
+                subprocess.run(['sudo','mkdir',cases_teacher_led])
+                subprocess.run(['sudo','mkdir',cases_student_led])
+                subprocess.run(['sudo','mkdir',cases_project_based])
+                subprocess.run(['sudo','mkdir',teacher_integ])
+                subprocess.run(['sudo','mkdir',teacher_test])
+                subprocess.run(['sudo','mkdir',teacher_dd])
+                subprocess.run(['sudo','mkdir',student_integ])
+                subprocess.run(['sudo','mkdir',student_test])
+                subprocess.run(['sudo','mkdir',student_dd])
+                subprocess.run(['sudo','mkdir',proj_integ])
+                subprocess.run(['sudo','mkdir',proj_test])
+                subprocess.run(['sudo','mkdir',proj_dd])
+                subprocess.run(['sudo','mkdir',root_roles])
+                subprocess.run(['sudo','mkdir',roles_programmer1])
+                subprocess.run(['sudo','mkdir',roles_programmer2])
+                subprocess.run(['sudo','mkdir',roles_techlead])
+                subprocess.run(['sudo','mkdir',roles_qaengineer])
+                subprocess.run(['sudo','mkdir',roles_devopsengineer])
+                subprocess.run(['sudo','mkdir',sites_root])
+                subprocess.run(['sudo','mkdir',sites_blogsite])
+                subprocess.run(['sudo','mkdir',sites_messaging])
+                subprocess.run(['sudo','mkdir',sites_todolist])
+                subprocess.run(['sudo','mkdir',UA_blogsite])
+                subprocess.run(['sudo','mkdir',UA_messaging])
+                subprocess.run(['sudo','mkdir',UA_todolist])
+                subprocess.run(['sudo','mkdir',git_server])
+                subprocess.run(['sudo','mkdir',server_capstone_git])
+                subprocess.run(['sudo','chmod','777',root_folder])
+                subprocess.run(['sudo','chown','-R','caikit',root_folder])
+                subprocess.Popen(['git','clone','https://github.com/Lyamir/Capstone-Website.git','/home/caikit/Documents/caikit/sites/unaltered-capstone-blogsite/']).wait()
+                subprocess.Popen(['npm','install','/home/caikit/Documents/caikit/sites/unaltered-capstone-blogsite/']).wait()
+                #subprocess.run(['git clone','https://github.com/Lyamir/Capstone-Website.git'],UA_blogsite)
+                subprocess.run(['sudo','chmod','-R','777','/home/caikit/Documents/caikit/sites/unaltered-capstone-blogsite/Capstone-Website'])
+                subprocess.run(['sudo','chown','-R','caikit','/home/caikit/Documents/caikit/sites/unaltered-capstone-blogsite/Capstone-Website'])
+                subprocess.run(['sudo','cp','-r','/home/caikit/Documents/caikit/sites/unaltered-capstone-blogsite/cases/teacher-led/delivery-and-deployment','/home/caikit/Documents/caikit/cases/teacher-led/'])
+                subprocess.run(['sudo','cp','-r','/home/caikit/Documents/caikit/sites/unaltered-capstone-blogsite/cases/teacher-led/integration','/home/caikit/Documents/caikit/cases/teacher-led/'])
+                subprocess.run(['sudo','cp','-r','/home/caikit/Documents/caikit/sites/unaltered-capstone-blogsite/cases/teacher-led/testing','/home/caikit/Documents/caikit/cases/teacher-led/'])  
+                subprocess.run(['sudo','chmod','-R','777',cases_teacher_led])
+                #subprocess.run(['sudo','chmod','-R','777',cases_student_led])
+                #subprocess.run(['sudo','chmod','-R','777',cases_project_based])
+                subprocess.run(['sudo','chown','-R','caikit',cases_teacher_led])
+                #subprocess.run(['sudo','chown','-R','caikit',cases_student_led])
+                #subprocess.run(['sudo','chown','-R','caikit',cases_project_based])
                 caseState = False
                 exit()
             elif (confirmation == 'n'or confirmation == 'N'):
@@ -332,6 +394,8 @@ while state:
             exit()        
         else:
             print('Unknown Option try again')
+
+
 
 #* FOLDER DIRECTORY
 #* /home/caikit/Documents/caikit/                                           caikit root folder (insert script here)
