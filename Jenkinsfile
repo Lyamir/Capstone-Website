@@ -26,6 +26,7 @@ pipeline{
                 //Running container and Docker cleanup
                 
                 sh '''
+                if [ $(docker ps -a -f name=\$DEPLOYED_CONTAINER | grep -o \$DEPLOYED_CONTAINER) ]; then docker stop \$DEPLOYED_CONTAINER; docker rm \$DEPLOYED_CONTAINER; fi
                 docker run -d -p \$CONTAINER_PORT:\$APP_PORT --restart unless-stopped --net mynetwork --ip \$CONTAINER_IP --name \$DEPLOYED_CONTAINER \$NEXUS_ADDRESS/\$IMAGE:\$TAG
                 docker system prune -f
                 '''
