@@ -47,7 +47,8 @@ UA_blogsite="/home/caikit/Documents/caikit/sites/unaltered-capstone-blogsite"
 UA_messaging="/home/caikit/Documents/caikit/sites/unaltered-capstone-messaging"
 UA_todolist="/home/caikit/Documents/caikit/sites/unaltered-capstone-todolist"
 git_server="/home/caikit/Documents/caikit/git-server"
-server_capstone_git= "/home/caikit/Documents/caikit/git-server/capstone-blogsite.git"
+server_capstone_blog_git= "/home/caikit/Documents/caikit/git-server/capstone-blogsite.git"
+server_capstone_message_git= "/home/caikit/Documents/caikit/git-server/capstone-messaging.git"
 
 #Loops while the user has not selected a valid choice
 while state:
@@ -60,14 +61,16 @@ while state:
         #Asks for the user input in choosing from the three Key concepts
         option = int(input("Enter your choice: "))
         if option == 1:
-            print("You have Chosen Continuous Integration")
             state = False
+            confirmationState = True
+            print("You have Chosen Continuous Integration")
             while confirmationState:
                 #Asks the user to pick which case they would like or if they would like to reset the case
                 print("Choose a Case to work on:")
                 print("Select 1 for Teacher-led case")
                 print("Select 2 for Self-learned case")
                 print("Select 3 for Project-based case")
+                print("Select 4 to go back")
                 caseoption = int(input("Enter your choice: "))
                 if caseoption == 1:
                     print("You have chosen the Teacher-led case")
@@ -77,14 +80,14 @@ while state:
                     subprocess.run(['rm','-r', roles_devopsengineer])
                     subprocess.run(['rm','-r', roles_qaengineer])
                     subprocess.run(['rm','-r', roles_techlead])
-                    subprocess.run(['rm','-r', server_capstone_git])
+                    subprocess.run(['rm','-r', server_capstone_blog_git])
                     subprocess.run(['rm','-r', sites_blogsite])
                     subprocess.run(['mkdir',roles_programmer1])
                     subprocess.run(['mkdir',roles_programmer2])                   
                     subprocess.run(['mkdir',roles_devopsengineer])
                     subprocess.run(['mkdir',roles_qaengineer])
                     subprocess.run(['mkdir',roles_techlead])       
-                    subprocess.run(['mkdir',server_capstone_git])                    
+                    subprocess.run(['mkdir',server_capstone_blog_git])                    
                     subprocess.run(['mkdir',sites_blogsite])
                     subprocess.run(['sudo','chmod','777',roles_programmer1])
                     subprocess.run(['sudo','chmod','777',roles_programmer2])
@@ -93,7 +96,7 @@ while state:
                     subprocess.run(['sudo','chmod','777',roles_techlead])
                     subprocess.run(['sudo','chmod','777',sites_blogsite])
                     
-                    subprocess.run(['sudo','chmod','777',server_capstone_git])
+                    subprocess.run(['sudo','chmod','777',server_capstone_blog_git])
                     
                     src5 = r"/home/caikit/Documents/caikit/sites/unaltered-capstone-blogsite"
                     dest5 = r"/home/caikit/Documents/caikit/sites/capstone-blogsite"
@@ -115,18 +118,66 @@ while state:
                         if os.path.isfile(file):
                             shutil.copy(file,dest)
 
-                    subprocess.run(['git','init','--bare'],cwd = server_capstone_git)
+                    subprocess.run(['git','init','--bare'],cwd = server_capstone_blog_git)
                     subprocess.run(['git','init'], cwd=sites_blogsite)
                     subprocess.run(['git','add','.'], cwd=sites_blogsite)
                     subprocess.run(['git','commit','-m','Initial commit'], cwd=sites_blogsite)
-                    subprocess.run(['git','remote','add','origin',server_capstone_git],cwd=sites_blogsite)
+                    subprocess.run(['git','remote','add','origin',server_capstone_blog_git],cwd=sites_blogsite)
                     subprocess.run(['git','push','origin','master'],cwd=sites_blogsite)
-                    subprocess.run(['sudo','chown','-R','caikit',server_capstone_git])
+                    subprocess.run(['sudo','chown','-R','caikit',server_capstone_blog_git])
                     caseState = False
                     confirmationState = False
                 elif caseoption == 2:
                     print("You have chosen the Self-learned case")
                     print("Please wait while we prepare the case")
+                    
+                    subprocess.run(['rm','-r', roles_programmer1])
+                    subprocess.run(['rm','-r', roles_programmer2])
+                    subprocess.run(['rm','-r', roles_devopsengineer])
+                    subprocess.run(['rm','-r', roles_qaengineer])
+                    subprocess.run(['rm','-r', roles_techlead])
+                    subprocess.run(['rm','-r', server_capstone_message_git])
+                    subprocess.run(['rm','-r', sites_messaging])
+                    subprocess.run(['mkdir',roles_programmer1])
+                    subprocess.run(['mkdir',roles_programmer2])                   
+                    subprocess.run(['mkdir',roles_devopsengineer])
+                    subprocess.run(['mkdir',roles_qaengineer])
+                    subprocess.run(['mkdir',roles_techlead])       
+                    subprocess.run(['mkdir',server_capstone_message_git])                    
+                    subprocess.run(['mkdir',sites_messaging])
+                    subprocess.run(['sudo','chmod','777',roles_programmer1])
+                    subprocess.run(['sudo','chmod','777',roles_programmer2])
+                    subprocess.run(['sudo','chmod','777',roles_devopsengineer])
+                    subprocess.run(['sudo','chmod','777',roles_qaengineer])
+                    subprocess.run(['sudo','chmod','777',roles_techlead])
+                    subprocess.run(['sudo','chmod','777',sites_blogsite])
+                    subprocess.run(['sudo','chown','-R','caikit',server_capstone_message_git])
+                    subprocess.run(['sudo','chmod','777',server_capstone_message_git])
+
+                    src5 = r"/home/caikit/Documents/caikit/sites/unaltered-capstone-messaging"
+                    dest5 = r"/home/caikit/Documents/caikit/sites/capstone-messaging"
+                    shutil.copytree(src5,dest5,symlinks=False,ignore=None,ignore_dangling_symlinks=False,dirs_exist_ok=True)
+                   
+                    src6 = r"/home/caikit/Documents/caikit/sites/unaltered-capstone-messaging/"
+                    dest6 = r"/home/caikit/Documents/caikit/sites/capstone-messaging"
+                    shutil.copytree(src6,dest6,symlinks=False,ignore=None,ignore_dangling_symlinks=False,dirs_exist_ok=True)
+                    
+                    src = r"/home/caikit/Documents/caikit/cases/student-led/integration/model"
+                    dest = r"/home/caikit/Documents/caikit/sites/capstone-messaging/model"
+
+                    subprocess.run(['git','init','--bare'],cwd = server_capstone_message_git)
+                    subprocess.run(['git','init'], cwd=sites_messaging)
+                    subprocess.run(['git','add','.'], cwd=sites_messaging)
+                    subprocess.run(['git','commit','-m','Initial commit'], cwd=sites_messaging)
+                    subprocess.run(['git','remote','add','origin',server_capstone_message_git],cwd=sites_messaging)
+                    subprocess.run(['git','push','origin','master'],cwd=sites_messaging)
+                    subprocess.run(['sudo','chown','-R','caikit',server_capstone_message_git])
+                    files = os.listdir(src)
+                    files2 = os.listdir(dest)
+                    os.chdir(src)
+                    for file in files:
+                        if os.path.isfile(file):
+                            shutil.copy(file,dest)
                     #os.chdir(src)
                     #for file in files:
                     #r"/home/caikit/Documents/caikit/capstone-messaging"
@@ -145,16 +196,21 @@ while state:
                     caseState = False
                     confirmationState = False
                 
+                elif caseoption == 4:
+                    confirmationState = False
+                    state = True
                 else:
                     print("Unknown option Try again")
         elif option == 2:
             print("You have Chosen Continuous Testing")
             state = False
+            confirmationState = True
             while confirmationState:
                 print("Choose a Case to work on:")
                 print("Select 1 for Teacher-led case")
                 print("Select 2 for Self-learned case")
                 print("Select 3 for Project-based case")
+                print("Select 4 to go back")
                 caseoption = int(input("Enter your choice: "))
                 if caseoption == 1:
                     print("You have chosen the Teacher-led case")
@@ -164,14 +220,14 @@ while state:
                     subprocess.run(['rm','-r', roles_devopsengineer])
                     subprocess.run(['rm','-r', roles_qaengineer])
                     subprocess.run(['rm','-r', roles_techlead])
-                    subprocess.run(['rm','-r', server_capstone_git])
+                    subprocess.run(['rm','-r', server_capstone_blog_git])
                     subprocess.run(['rm','-r', sites_blogsite])
                     subprocess.run(['mkdir',roles_programmer1])
                     subprocess.run(['mkdir',roles_programmer2])                   
                     subprocess.run(['mkdir',roles_devopsengineer])
                     subprocess.run(['mkdir',roles_qaengineer])
                     subprocess.run(['mkdir',roles_techlead])       
-                    subprocess.run(['mkdir',server_capstone_git])                    
+                    subprocess.run(['mkdir',server_capstone_blog_git])                    
                     subprocess.run(['mkdir',sites_blogsite])
                     subprocess.run(['sudo','chmod','777',roles_programmer1])
                     subprocess.run(['sudo','chmod','777',roles_programmer2])
@@ -179,8 +235,8 @@ while state:
                     subprocess.run(['sudo','chmod','777',roles_qaengineer])
                     subprocess.run(['sudo','chmod','777',roles_techlead])
                     subprocess.run(['sudo','chmod','777',sites_blogsite])
-                    subprocess.run(['sudo','chown','-R','caikit',server_capstone_git])
-                    subprocess.run(['sudo','chmod','777',server_capstone_git])
+                    subprocess.run(['sudo','chown','-R','caikit',server_capstone_blog_git])
+                    subprocess.run(['sudo','chmod','777',server_capstone_blog_git])
 
                     src5 = r"/home/caikit/Documents/caikit/sites/unaltered-capstone-blogsite"
                     dest5 = r"/home/caikit/Documents/caikit/sites/capstone-blogsite"
@@ -207,19 +263,65 @@ while state:
                         if os.path.isfile(file):
                             shutil.copy(file,dest2)  
 
-                    subprocess.run(['git','init','--bare'],cwd = server_capstone_git)
+                    subprocess.run(['git','init','--bare'],cwd = server_capstone_blog_git)
                     subprocess.run(['git','init'], cwd=sites_blogsite)
                     subprocess.run(['git','add','.'], cwd=sites_blogsite)
                     subprocess.run(['git','commit','-m','Initial commit'], cwd=sites_blogsite)
-                    subprocess.run(['git','remote','add','origin',server_capstone_git],cwd=sites_blogsite)
+                    subprocess.run(['git','remote','add','origin',server_capstone_blog_git],cwd=sites_blogsite)
                     subprocess.run(['git','push','origin','master'],cwd=sites_blogsite)
-                    subprocess.run(['sudo','chown','-R','caikit',server_capstone_git])                    
+                    subprocess.run(['sudo','chown','-R','caikit',server_capstone_blog_git])                    
 
                     caseState = False
                     confirmationState = False
                 elif caseoption == 2:
                     print("You have chosen the Self-learned case")
                     print("Please wait while we prepare the case")
+                    # subprocess.run(['rm','-r', roles_programmer1])
+                    # subprocess.run(['rm','-r', roles_programmer2])
+                    # subprocess.run(['rm','-r', roles_devopsengineer])
+                    # subprocess.run(['rm','-r', roles_qaengineer])
+                    # subprocess.run(['rm','-r', roles_techlead])
+                    # subprocess.run(['rm','-r', server_capstone_message_git])
+                    # subprocess.run(['rm','-r', sites_messaging])
+                    # subprocess.run(['mkdir',roles_programmer1])
+                    # subprocess.run(['mkdir',roles_programmer2])                   
+                    # subprocess.run(['mkdir',roles_devopsengineer])
+                    # subprocess.run(['mkdir',roles_qaengineer])
+                    # subprocess.run(['mkdir',roles_techlead])       
+                    # subprocess.run(['mkdir',server_capstone_message_git])                    
+                    # subprocess.run(['mkdir',sites_messaging])
+                    # subprocess.run(['sudo','chmod','777',roles_programmer1])
+                    # subprocess.run(['sudo','chmod','777',roles_programmer2])
+                    # subprocess.run(['sudo','chmod','777',roles_devopsengineer])
+                    # subprocess.run(['sudo','chmod','777',roles_qaengineer])
+                    # subprocess.run(['sudo','chmod','777',roles_techlead])
+                    # subprocess.run(['sudo','chmod','777',sites_blogsite])
+                    # subprocess.run(['sudo','chown','-R','caikit',server_capstone_message_git])
+                    # subprocess.run(['sudo','chmod','777',server_capstone_message_git])
+
+                    # src5 = r"/home/caikit/Documents/caikit/sites/unaltered-capstone-messagineg"
+                    # dest5 = r"/home/caikit/Documents/caikit/sites/capstone-messaging"
+                    # shutil.copytree(src5,dest5,symlinks=False,ignore=None,ignore_dangling_symlinks=False,dirs_exist_ok=True)
+                   
+                    # src6 = r"/home/caikit/Documents/caikit/sites/unaltered-capstone-messaging/"
+                    # dest6 = r"/home/caikit/Documents/caikit/sites/capstone-messaging"
+                    # shutil.copytree(src6,dest6,symlinks=False,ignore=None,ignore_dangling_symlinks=False,dirs_exist_ok=True)
+
+                    # subprocess.run(['git','init','--bare'],cwd = server_capstone_message_git)
+                    # subprocess.run(['git','init'], cwd=sites_messaging)
+                    # subprocess.run(['git','add','.'], cwd=sites_messaging)
+                    # subprocess.run(['git','commit','-m','Initial commit'], cwd=sites_messaging)
+                    # subprocess.run(['git','remote','add','origin',server_capstone_message_git],cwd=sites_messaging)
+                    # subprocess.run(['git','push','origin','master'],cwd=sites_messaging)
+                    # subprocess.run(['sudo','chown','-R','caikit',server_capstone_message_git])
+                    # files = os.listdir(src)
+                    # files2 = os.listdir(dest)
+                    # os.chdir(src)
+                    # for file in files:
+                    #     if os.path.isfile(file):
+                    #         shutil.copy(file,dest)
+
+                    
                     # os.chdir(src)
                     # for file in files:
                     #r"/home/caikit/Documents/caikit/capstone-messaging"                
@@ -237,16 +339,23 @@ while state:
                     #         shutil.copy(file,dest)
                     caseState = False
                     confirmationState = False
+                
+                elif caseoption == 4:
+                    confirmationState = False
+                    state = True
+
                 else:
                     print("Unknown option Try again")             
         elif option == 3:
             print("You have Chosen Continuous Deployment and Delivery")
             state = False
+            confirmationState = True
             while confirmationState:
                 print("Choose a Case to work on:")
                 print("Select 1 for Teacher-led case")
                 print("Select 2 for Self-learned case")
                 print("Select 3 for Project-based case")
+                print("Select 4 to go back")
                 caseoption = int(input("Enter your choice: "))
                 if caseoption == 1:
                     print("You have chosen the Teacher-led case")
@@ -256,14 +365,14 @@ while state:
                     subprocess.run(['rm','-r', roles_devopsengineer])
                     subprocess.run(['rm','-r', roles_qaengineer])
                     subprocess.run(['rm','-r', roles_techlead])
-                    subprocess.run(['rm','-r', server_capstone_git])
+                    subprocess.run(['rm','-r', server_capstone_blog_git])
                     subprocess.run(['rm','-r', sites_blogsite])
                     subprocess.run(['mkdir',roles_programmer1])
                     subprocess.run(['mkdir',roles_programmer2])                   
                     subprocess.run(['mkdir',roles_devopsengineer])
                     subprocess.run(['mkdir',roles_qaengineer])
                     subprocess.run(['mkdir',roles_techlead])       
-                    subprocess.run(['mkdir',server_capstone_git])                    
+                    subprocess.run(['mkdir',server_capstone_blog_git])                    
                     subprocess.run(['mkdir',sites_blogsite])
                     subprocess.run(['sudo','chmod','777',roles_programmer1])
                     subprocess.run(['sudo','chmod','777',roles_programmer2])
@@ -271,8 +380,8 @@ while state:
                     subprocess.run(['sudo','chmod','777',roles_qaengineer])
                     subprocess.run(['sudo','chmod','777',roles_techlead])
                     subprocess.run(['sudo','chmod','777',sites_blogsite])
-                    subprocess.run(['sudo','chown','-R','caikit',server_capstone_git])
-                    subprocess.run(['sudo','chmod','777',server_capstone_git])
+                    subprocess.run(['sudo','chown','-R','caikit',server_capstone_blog_git])
+                    subprocess.run(['sudo','chmod','777',server_capstone_blog_git])
 
                     src5 = r"/home/caikit/Documents/caikit/sites/unaltered-capstone-blogsite"
                     dest5 = r"/home/caikit/Documents/caikit/sites/capstone-blogsite"
@@ -291,19 +400,68 @@ while state:
                         if os.path.isfile(file):
                             shutil.copy(file,dest2) 
                      
-                    subprocess.run(['git','init','--bare'],cwd = server_capstone_git)
+                    subprocess.run(['git','init','--bare'],cwd = server_capstone_blog_git)
                     subprocess.run(['git','init'], cwd=sites_blogsite)
                     subprocess.run(['git','add','.'], cwd=sites_blogsite)
                     subprocess.run(['git','commit','-m','Initial commit'], cwd=sites_blogsite)
-                    subprocess.run(['git','remote','add','origin',server_capstone_git],cwd=sites_blogsite)
+                    subprocess.run(['git','remote','add','origin',server_capstone_blog_git],cwd=sites_blogsite)
                     subprocess.run(['git','push','origin','master'],cwd=sites_blogsite)
-                    subprocess.run(['sudo','chown','-R','caikit',server_capstone_git])
+                    subprocess.run(['sudo','chown','-R','caikit',server_capstone_blog_git])
                     
                     caseState = False
                     confirmationState = False
                 elif caseoption == 2:
                     print("You have chosen the Self-learned case")
                     print("Please wait while we prepare the case")
+
+                    subprocess.run(['rm','-r', roles_programmer1])
+                    subprocess.run(['rm','-r', roles_programmer2])
+                    subprocess.run(['rm','-r', roles_devopsengineer])
+                    subprocess.run(['rm','-r', roles_qaengineer])
+                    subprocess.run(['rm','-r', roles_techlead])
+                    subprocess.run(['rm','-r', server_capstone_message_git])
+                    subprocess.run(['rm','-r', sites_messaging])
+                    subprocess.run(['mkdir',roles_programmer1])
+                    subprocess.run(['mkdir',roles_programmer2])                   
+                    subprocess.run(['mkdir',roles_devopsengineer])
+                    subprocess.run(['mkdir',roles_qaengineer])
+                    subprocess.run(['mkdir',roles_techlead])       
+                    subprocess.run(['mkdir',server_capstone_message_git])                    
+                    subprocess.run(['mkdir',sites_messaging])
+                    subprocess.run(['sudo','chmod','777',roles_programmer1])
+                    subprocess.run(['sudo','chmod','777',roles_programmer2])
+                    subprocess.run(['sudo','chmod','777',roles_devopsengineer])
+                    subprocess.run(['sudo','chmod','777',roles_qaengineer])
+                    subprocess.run(['sudo','chmod','777',roles_techlead])
+                    subprocess.run(['sudo','chmod','777',sites_blogsite])
+                    subprocess.run(['sudo','chown','-R','caikit',server_capstone_message_git])
+                    subprocess.run(['sudo','chmod','777',server_capstone_message_git])
+
+                    src5 = r"/home/caikit/Documents/caikit/sites/unaltered-capstone-messaging"
+                    dest5 = r"/home/caikit/Documents/caikit/sites/capstone-messaging"
+                    shutil.copytree(src5,dest5,symlinks=False,ignore=None,ignore_dangling_symlinks=False,dirs_exist_ok=True)
+
+                    src6 = r"/home/caikit/Documents/caikit/sites/unaltered-capstone-messaging/"
+                    dest6 = r"/home/caikit/Documents/caikit/sites/capstone-messaging"
+                    shutil.copytree(src6,dest6,symlinks=False,ignore=None,ignore_dangling_symlinks=False,dirs_exist_ok=True)
+
+                    src2 = r"/home/caikit/Documents/caikit/cases/student-led/delivery-and-deployment"
+                    dest2 = r"/home/caikit/Documents/caikit/sites/capstone-messaging"
+                    files3 = os.listdir(src2)
+                    files4 = os.listdir(dest2)
+                    os.chdir(src2)
+                    for file in files3:
+                        if os.path.isfile(file):
+                            shutil.copy(file,dest2)
+
+                    subprocess.run(['git','init','--bare'],cwd = server_capstone_message_git)
+                    subprocess.run(['git','init'], cwd=sites_messaging)
+                    subprocess.run(['git','add','.'], cwd=sites_messaging)
+                    subprocess.run(['git','commit','-m','Initial commit'], cwd=sites_messaging)
+                    subprocess.run(['git','remote','add','origin',server_capstone_message_git],cwd=sites_messaging)
+                    subprocess.run(['git','push','origin','master'],cwd=sites_messaging)
+                    subprocess.run(['sudo','chown','-R','caikit',server_capstone_message_git])
+                    
                     # os.chdir(src)
                     # for file in files:
                     #r"/home/caikit/Documents/caikit/capstone-messaging"
@@ -321,6 +479,11 @@ while state:
                     #         shutil.copy(file,dest)
                     caseState = False
                     confirmationState = False
+                
+                elif caseoption == 4:
+                    confirmationState = False
+                    state = True                
+                
                 else:
                     print("Unknown option Try again")
 
@@ -359,31 +522,42 @@ while state:
                 subprocess.run(['sudo','mkdir',UA_messaging])
                 subprocess.run(['sudo','mkdir',UA_todolist])
                 subprocess.run(['sudo','mkdir',git_server])
-                subprocess.run(['sudo','mkdir',server_capstone_git])
+                subprocess.run(['sudo','mkdir',server_capstone_blog_git])
+                subprocess.run(['sudo','mkdir',server_capstone_message_git])
                 subprocess.run(['sudo','chmod','777',root_folder])
                 subprocess.run(['sudo','chown','-R','caikit',root_folder])
-                subprocess.Popen(['git','clone','https://github.com/Lyamir/Capstone-Website.git','/home/caikit/Documents/caikit/sites/unaltered-capstone-blogsite/']).wait()
-                subprocess.Popen(['npm','install'],cwd='/home/caikit/Documents/caikit/sites/unaltered-capstone-blogsite').wait()
-                #subprocess.run(['git clone','https://github.com/Lyamir/Capstone-Website.git'],UA_blogsite)
+                subprocess.Popen(['git','clone','https://github.com/Lyamir/capstone-blogsite.git','/home/caikit/Documents/caikit/sites/unaltered-capstone-blogsite/']).wait()
+                subprocess.Popen(['npm','install','-f'],cwd='/home/caikit/Documents/caikit/sites/unaltered-capstone-blogsite').wait()
+                subprocess.Popen(['git','clone','https://github.com/Lyamir/capstone-messaging.git','/home/caikit/Documents/caikit/sites/unaltered-capstone-messaging/']).wait()
+                subprocess.Popen(['npm','install','-f'],cwd='/home/caikit/Documents/caikit/sites/unaltered-capstone-messaging').wait()
+
                 subprocess.run(['sudo','chmod','-R','777','/home/caikit/Documents/caikit/sites/unaltered-capstone-blogsite/'])
                 subprocess.run(['sudo','chown','-R','caikit','/home/caikit/Documents/caikit/sites/unaltered-capstone-blogsite/'])
+                subprocess.run(['sudo','chmod','-R','777','/home/caikit/Documents/caikit/sites/unaltered-capstone-messaging/'])
+                subprocess.run(['sudo','chown','-R','caikit','/home/caikit/Documents/caikit/sites/unaltered-capstone-messaging/'])    
+
                 subprocess.run(['sudo','cp','-r','/home/caikit/Documents/caikit/sites/unaltered-capstone-blogsite/cases/teacher-led/delivery-and-deployment','/home/caikit/Documents/caikit/cases/teacher-led/'])
                 subprocess.run(['sudo','cp','-r','/home/caikit/Documents/caikit/sites/unaltered-capstone-blogsite/cases/teacher-led/integration','/home/caikit/Documents/caikit/cases/teacher-led/'])
-                subprocess.run(['sudo','cp','-r','/home/caikit/Documents/caikit/sites/unaltered-capstone-blogsite/cases/teacher-led/testing','/home/caikit/Documents/caikit/cases/teacher-led/'])  
+                subprocess.run(['sudo','cp','-r','/home/caikit/Documents/caikit/sites/unaltered-capstone-blogsite/cases/teacher-led/testing','/home/caikit/Documents/caikit/cases/teacher-led/'])
+                subprocess.run(['sudo','cp','-r','/home/caikit/Documents/caikit/sites/unaltered-capstone-messaging/cases/student-led/integration','/home/caikit/Documents/caikit/cases/student-led/'])
+                subprocess.run(['sudo','cp','-r','/home/caikit/Documents/caikit/sites/unaltered-capstone-messaging/cases/student-led/delivery-and-deployment','/home/caikit/Documents/caikit/cases/student-led/'])
+                subprocess.run(['sudo','cp','-r','/home/caikit/Documents/caikit/sites/unaltered-capstone-messaging/cases/student-led/testing','/home/caikit/Documents/caikit/cases/student-led/'])
+
                 subprocess.run(['sudo','rm','-dr','/home/caikit/Documents/caikit/sites/unaltered-capstone-blogsite/.git'])
                 subprocess.run(['sudo','rm','-dr','/home/caikit/Documents/caikit/sites/unaltered-capstone-blogsite/.gitattributes'])
                 subprocess.run(['sudo','rm','-dr','/home/caikit/Documents/caikit/sites/unaltered-capstone-blogsite/.gitignore'])
+                subprocess.run(['sudo','rm','-dr','/home/caikit/Documents/caikit/sites/unaltered-capstone-messaging/.git'])
                 subprocess.run(['sudo','chmod','-R','777',cases_teacher_led])
-                #subprocess.run(['sudo','chmod','-R','777',cases_student_led])
-                #subprocess.run(['sudo','chmod','-R','777',cases_project_based])
+                subprocess.run(['sudo','chmod','-R','777',cases_student_led])
+                subprocess.run(['sudo','chmod','-R','777',cases_project_based])
                 subprocess.run(['sudo','chown','-R','caikit',cases_teacher_led])
-                #subprocess.run(['sudo','chown','-R','caikit',cases_student_led])
-                #subprocess.run(['sudo','chown','-R','caikit',cases_project_based])
+                subprocess.run(['sudo','chown','-R','caikit',cases_student_led])
+                subprocess.run(['sudo','chown','-R','caikit',cases_project_based])
                 caseState = False
                 exit()
             elif (confirmation == 'n'or confirmation == 'N'):
                 print("Going back to case selection")
-                state = False
+                state = True
         elif option == 5:
             print("Exiting")
             exit()        
