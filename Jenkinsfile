@@ -76,11 +76,11 @@ pipeline{
                 }
                 //Stop existing deployed container and run the deployed image
                 sshagent(credentials: ['production_ssh']) {
-                sh """
+                sh '''
                     [ -d ~/.ssh ] || mkdir ~/.ssh && chmod 0700 ~/.ssh
                     ssh-keyscan -t rsa,dsa \$PROD_IP_ADD >> ~/.ssh/known_hosts
-                    ssh -tt caikit@\$PROD_IP_ADD 'if [ $(docker ps -a -f name=\$DEPLOYED_CONTAINER | grep -o \$DEPLOYED_CONTAINER) ]; then docker stop \$DEPLOYED_CONTAINER; docker rm \$DEPLOYED_CONTAINER; fi; docker load < /home/caikit/ftp/files/\$TAR_FILE; docker run -d -p \$CONTAINER_PORT:\$APP_PORT --restart unless-stopped --net mynetwork --ip \$CONTAINER_IP --name \$DEPLOYED_CONTAINER \$NEXUS_ADDRESS/\$IMAGE:\$TAG; docker system prune -f'
-                """
+                    ssh -tt caikit@\$PROD_IP_ADD 'if [ $(docker ps -a -f name=containerized_blogsite | grep -o containerized_blogsite) ]; then docker stop containerized_blogsite; docker rm containerized_blogsite; fi; docker load < /home/caikit/ftp/files/blogsite.tar; docker run -d -p 8008:3000 --restart unless-stopped --net mynetwork --ip 172.18.0.3 --name containerized_blogsite localhost:8083/capstone_blogsite:1.0; docker system prune -f'
+                '''
                 }
 
                 //Finished
