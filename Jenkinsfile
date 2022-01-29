@@ -5,12 +5,12 @@ pipeline{
         NEXUS_ADDRESS = 'localhost:8083'
         IMAGE = 'capstone_blogsite'
         TAG = '1.0'
-        CONTAINER = 'containerized_capstone_blogsite'
         DEPLOYED_CONTAINER = 'containerized_blogsite'
         PROD_IP_ADD = '192.168.56.102'
         CONTAINER_IP = '172.18.0.3'
         CONTAINER_PORT = '8008'
         APP_PORT= '3000'
+        TAR_FILE='blogsite.tar'
     }
 
     stages{
@@ -71,7 +71,7 @@ pipeline{
                 //Publish image to ftp server
                 withCredentials([usernamePassword(credentialsId: 'ftp', passwordVariable: 'ftp_pass', usernameVariable: 'ftp_user')]) {
                     sh ''' 
-                        lftp -u \$ftp_user,\$ftp_pass -e \"cd /files; put ./ignore-this/blogsite.tar;quit\" \$PROD_IP_ADD
+                        lftp -u \$ftp_user,\$ftp_pass -e \"cd /files; put ./ignore-this/\$TAR_FILE;quit\" \$PROD_IP_ADD
                     '''
                 }
                 //Stop existing deployed container and run the deployed image
@@ -79,7 +79,7 @@ pipeline{
                 sh '''
                     [ -d ~/.ssh ] || mkdir ~/.ssh && chmod 0700 ~/.ssh
                     ssh-keyscan -t rsa,dsa \$PROD_IP_ADD >> ~/.ssh/known_hosts
-                    ssh -tt caikit@\$PROD_IP_ADD 'docker stop containerized_blogsite; docker rm containerized_blogsite; docker load < /home/caikit/ftp/files/blogsite.tar; docker run -d -p \$CONTAINER_PORT:\$APP_PORT --restart unless-stopped --net mynetwork --ip \$CONTAINER_IP --name \$DEPLOYED_CONTAINER \$NEXUS_ADDRESS/\$IMAGE:\$TAG; docker system prune -f'
+                    ssh -tt caikit@\$PROD_IP_ADD 'if [ $(docker ps -a -f name=\$DEPLOYED_CONTAINER | grep -o \$DEPLOYED_CONTAINER) ]; then docker stop \$DEPLOYED_CONTAINER; docker rm \$DEPLOYED_CONTAINER; fi; docker load < /home/caikit/ftp/files/\$TAR_FILE; docker run -d -p \$CONTAINER_PORT:\$APP_PORT --restart unless-stopped --net mynetwork --ip \$CONTAINER_IP --name \$DEPLOYED_CONTAINER \$NEXUS_ADDRESS/\$IMAGE:\$TAG; docker system prune -f'
                 '''
                 }
 
