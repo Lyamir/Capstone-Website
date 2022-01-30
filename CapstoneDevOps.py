@@ -162,7 +162,12 @@ while state:
                     
                     src = r"/home/caikit/Documents/caikit/cases/student-led/integration/model"
                     dest = r"/home/caikit/Documents/caikit/sites/capstone-messaging/model"
-
+                    files = os.listdir(src)
+                    files2 = os.listdir(dest)
+                    os.chdir(src)
+                    for file in files:
+                        if os.path.isfile(file):
+                            shutil.copy(file,dest)
                     subprocess.run(['git','init','--bare'],cwd = server_capstone_message_git)
                     subprocess.run(['git','init'], cwd=sites_messaging)
                     subprocess.run(['git','add','.'], cwd=sites_messaging)
@@ -170,12 +175,7 @@ while state:
                     subprocess.run(['git','remote','add','origin',server_capstone_message_git],cwd=sites_messaging)
                     subprocess.run(['git','push','origin','master'],cwd=sites_messaging)
                     subprocess.run(['sudo','chown','-R','caikit',server_capstone_message_git])
-                    files = os.listdir(src)
-                    files2 = os.listdir(dest)
-                    os.chdir(src)
-                    for file in files:
-                        if os.path.isfile(file):
-                            shutil.copy(file,dest)
+                   
                     #os.chdir(src)
                     #for file in files:
                     #r"/home/caikit/Documents/caikit/capstone-messaging"
@@ -444,7 +444,7 @@ while state:
                     src5 = r"/home/caikit/Documents/caikit/sites/unaltered-capstone-messaging"
                     dest5 = r"/home/caikit/Documents/caikit/sites/capstone-messaging"
                     shutil.copytree(src5,dest5,symlinks=False,ignore=None,ignore_dangling_symlinks=False,dirs_exist_ok=True)
-
+                   
                     src6 = r"/home/caikit/Documents/caikit/sites/unaltered-capstone-messaging/"
                     dest6 = r"/home/caikit/Documents/caikit/sites/capstone-messaging"
                     shutil.copytree(src6,dest6,symlinks=False,ignore=None,ignore_dangling_symlinks=False,dirs_exist_ok=True)
