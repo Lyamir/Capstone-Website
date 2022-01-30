@@ -305,14 +305,6 @@ while state:
                     dest6 = r"/home/caikit/Documents/caikit/sites/capstone-messaging"
                     shutil.copytree(src6,dest6,symlinks=False,ignore=None,ignore_dangling_symlinks=False,dirs_exist_ok=True)
 
-                    subprocess.run(['git','init','--bare'],cwd = server_capstone_message_git)
-                    subprocess.run(['git','init'], cwd=sites_messaging)
-                    subprocess.run(['git','add','.'], cwd=sites_messaging)
-                    subprocess.run(['git','commit','-m','Initial commit'], cwd=sites_messaging)
-                    subprocess.run(['git','remote','add','origin',server_capstone_message_git],cwd=sites_messaging)
-                    subprocess.run(['git','push','origin','master'],cwd=sites_messaging)
-                    subprocess.run(['sudo','chown','-R','caikit',server_capstone_message_git])
-                    
                     src = r"/home/caikit/Documents/caikit/cases/student-led/testing/test"
                     dest =r"/home/caikit/Documents/caikit/sites/capstone-messaging/test"
                     files = os.listdir(src)
@@ -330,6 +322,16 @@ while state:
                     for file in files3:
                         if os.path.isfile(file):
                             shutil.copy(file,dest2)
+
+                    subprocess.run(['git','init','--bare'],cwd = server_capstone_message_git)
+                    subprocess.run(['git','init'], cwd=sites_messaging)
+                    subprocess.run(['git','add','.'], cwd=sites_messaging)
+                    subprocess.run(['git','commit','-m','Initial commit'], cwd=sites_messaging)
+                    subprocess.run(['git','remote','add','origin',server_capstone_message_git],cwd=sites_messaging)
+                    subprocess.run(['git','push','origin','master'],cwd=sites_messaging)
+                    subprocess.run(['sudo','chown','-R','caikit',server_capstone_message_git])
+                    
+
 
                     caseState = False
                     confirmationState = False                        
