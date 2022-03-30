@@ -66,13 +66,14 @@ while state:
                 #Asks the user to pick which case they would like or if they would like to reset the case
                 print("Choose a Case to work on:")
                 print("Select 1 for Teacher-led case")
-                print("Select 2 for Self-learned case")
+                print("Select 2 for Student-led case")
                 print("Select 3 for Project-based case")
                 print("Select 4 to go back")
                 caseoption = int(input("Enter your choice: "))
                 if caseoption == 1:
                     print("You have chosen the Teacher-led case")
                     print("Please wait while we prepare the case")
+
                     subprocess.run(['rm','-r', roles_programmer1])
                     subprocess.run(['rm','-r', roles_programmer2])
                     subprocess.run(['rm','-r', roles_devopsengineer])
@@ -93,7 +94,7 @@ while state:
                     subprocess.run(['sudo','chmod','777',roles_qaengineer])
                     subprocess.run(['sudo','chmod','777',roles_techlead])
                     subprocess.run(['sudo','chmod','777',sites_blogsite])
-                    
+                    subprocess.run(['sudo','chown','-R','caikit',server_capstone_blog_git])
                     subprocess.run(['sudo','chmod','777',server_capstone_blog_git])
                     
                     src5 = r"/home/caikit/Documents/caikit/sites/unaltered-capstone-blogsite"
@@ -126,7 +127,7 @@ while state:
                     caseState = False
                     confirmationState = False
                 elif caseoption == 2:
-                    print("You have chosen the Self-learned case")
+                    print("You have chosen the Student-led case")
                     print("Please wait while we prepare the case")
                     
                     subprocess.run(['rm','-r', roles_programmer1])
@@ -148,7 +149,7 @@ while state:
                     subprocess.run(['sudo','chmod','777',roles_devopsengineer])
                     subprocess.run(['sudo','chmod','777',roles_qaengineer])
                     subprocess.run(['sudo','chmod','777',roles_techlead])
-                    subprocess.run(['sudo','chmod','777',sites_blogsite])
+                    subprocess.run(['sudo','chmod','777',sites_messaging])
                     subprocess.run(['sudo','chown','-R','caikit',server_capstone_message_git])
                     subprocess.run(['sudo','chmod','777',server_capstone_message_git])
 
@@ -168,6 +169,7 @@ while state:
                     for file in files:
                         if os.path.isfile(file):
                             shutil.copy(file,dest)
+                            
                     subprocess.run(['git','init','--bare'],cwd = server_capstone_message_git)
                     subprocess.run(['git','init'], cwd=sites_messaging)
                     subprocess.run(['git','add','.'], cwd=sites_messaging)
@@ -206,7 +208,7 @@ while state:
             while confirmationState:
                 print("Choose a Case to work on:")
                 print("Select 1 for Teacher-led case")
-                print("Select 2 for Self-learned case")
+                print("Select 2 for Student-led case")
                 print("Select 3 for Project-based case")
                 print("Select 4 to go back")
                 caseoption = int(input("Enter your choice: "))
@@ -272,7 +274,7 @@ while state:
                     caseState = False
                     confirmationState = False
                 elif caseoption == 2:
-                    print("You have chosen the Self-learned case")
+                    print("You have chosen the Student-led case")
                     print("Please wait while we prepare the case")
                     subprocess.run(['rm','-r', roles_programmer1])
                     subprocess.run(['rm','-r', roles_programmer2])
@@ -293,7 +295,7 @@ while state:
                     subprocess.run(['sudo','chmod','777',roles_devopsengineer])
                     subprocess.run(['sudo','chmod','777',roles_qaengineer])
                     subprocess.run(['sudo','chmod','777',roles_techlead])
-                    subprocess.run(['sudo','chmod','777',sites_blogsite])
+                    subprocess.run(['sudo','chmod','777',sites_messaging])
                     subprocess.run(['sudo','chown','-R','caikit',server_capstone_message_git])
                     subprocess.run(['sudo','chmod','777',server_capstone_message_git])
 
@@ -359,7 +361,7 @@ while state:
             while confirmationState:
                 print("Choose a Case to work on:")
                 print("Select 1 for Teacher-led case")
-                print("Select 2 for Self-learned case")
+                print("Select 2 for Student-led case")
                 print("Select 3 for Project-based case")
                 print("Select 4 to go back")
                 caseoption = int(input("Enter your choice: "))
@@ -417,7 +419,7 @@ while state:
                     caseState = False
                     confirmationState = False
                 elif caseoption == 2:
-                    print("You have chosen the Self-learned case")
+                    print("You have chosen the Student-led case")
                     print("Please wait while we prepare the case")
 
                     subprocess.run(['rm','-r', roles_programmer1])
@@ -439,7 +441,7 @@ while state:
                     subprocess.run(['sudo','chmod','777',roles_devopsengineer])
                     subprocess.run(['sudo','chmod','777',roles_qaengineer])
                     subprocess.run(['sudo','chmod','777',roles_techlead])
-                    subprocess.run(['sudo','chmod','777',sites_blogsite])
+                    subprocess.run(['sudo','chmod','777',sites_messaging])
                     subprocess.run(['sudo','chown','-R','caikit',server_capstone_message_git])
                     subprocess.run(['sudo','chmod','777',server_capstone_message_git])
 
