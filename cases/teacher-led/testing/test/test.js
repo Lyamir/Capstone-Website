@@ -48,15 +48,13 @@ describe("Unit Tests", async function(){
 
         let title = "Goodbye World";
         let author = "Created by: admin";
-        let date = "Created on: Wed Oct 27 2021 00:00:00 GMT+0000 (Coordinated Universal Time)";
         let content = "This is an updated post";
 
         titleResult.should.equal(title);
         authorResult.should.equal(author);
-        dateResult.should.equal(date);
         contentResult.should.equal(content);
 
-        await driver.findElement(By.xpath("//*[@id=\"updatepost\"]")).click();
+        await driver.findElement(By.xpath("/html/body/a[2]")).click();
         await driver.findElement(By.xpath("/html/body/div/div/form/div/button")).click();
 
         await driver.quit();
@@ -107,7 +105,7 @@ describe("Unit Tests", async function(){
 
         await driver.findElement(By.xpath("//*[contains(text(), \""+post.title+"\")]")).click();
 
-        await driver.findElement(By.xpath("//*[@id=\"updatepost\"]")).click();
+        await driver.findElement(By.xpath("/html/body/a[2]")).click();
 
         await driver.findElement(By.xpath("/html/body/div/div/form/div/input[1]")).clear();
         await driver.findElement(By.xpath("/html/body/div/div/form/div/input[1]")).sendKeys(testingUpdate);
@@ -121,7 +119,7 @@ describe("Unit Tests", async function(){
     });
 
     //TODO:Tests comment functionality of post
-
+    
 
     //Tests delete functionality of post
     it("It should delete the testing post", async function(){
@@ -132,7 +130,7 @@ describe("Unit Tests", async function(){
 
         await driver.findElement(By.xpath("//*[contains(text(), \""+testingUpdate+"\")]")).click();
 
-        await driver.findElement(By.xpath("//*[@id=\"deletepost\"]")).click();
+        await driver.findElement(By.xpath("/html/body/a[3]")).click();
 
         //Test if post has been deleted in homepage
         await driver.navigate().to(address);
@@ -170,7 +168,7 @@ describe("Integration Testing", async function(){
         //Updates the created post
         await driver.navigate().to(address);
         await driver.findElement(By.xpath("//*[contains(text(), \""+post.title+"\")]")).click();
-        await driver.findElement(By.xpath("//*[@id=\"updatepost\"]")).click();
+        await driver.findElement(By.xpath("/html/body/a[2]")).click();
         await driver.findElement(By.xpath("/html/body/div/div/form/div/input[1]")).clear();
         await driver.findElement(By.xpath("/html/body/div/div/form/div/input[1]")).sendKeys(testingUpdate);
         await driver.findElement(By.xpath("/html/body/div/div/form/div/button")).click();
@@ -180,7 +178,6 @@ describe("Integration Testing", async function(){
         resultingTitle.should.equal(testingUpdate);
 
         //TODO: Add testing for comment functionality
-
         
         await driver.quit();
     });
@@ -193,7 +190,7 @@ describe("Integration Testing", async function(){
         //Delete the post test
         await driver.navigate().to(address);
         await driver.findElement(By.xpath("//*[contains(text(), \""+testingUpdate+"\")]")).click();
-        await driver.findElement(By.xpath("//*[@id=\"deletepost\"]")).click();
+        await driver.findElement(By.xpath("/html/body/a[3]")).click();
 
         //Test if post has been deleted in homepage
         await driver.navigate().to(address);
