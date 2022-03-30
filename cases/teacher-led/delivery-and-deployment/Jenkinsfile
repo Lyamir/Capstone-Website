@@ -40,14 +40,9 @@ pipeline{
                 echo ""
                 echo "---------- Provisioning Phase Started :: Deploying Artifacts to Nexus Repository :: ----------"
                 //Login to the Docker repository
-                withCredentials([usernamePassword(credentialsId: 'nexus', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                sh "docker login -u $USERNAME -p $PASSWORD $NEXUS_ADDRESS"
-                }
 
                 //Artifact deployment
-                echo ""
-                echo "---------- Integration Phase Started :: Deploying Artifacts :: ----------"
-                sh "docker push $NEXUS_ADDRESS/$IMAGE:$TAG"
+
             }
         }
         
@@ -73,7 +68,7 @@ pipeline{
                 sh '''
                     [ -d ~/.ssh ] || mkdir ~/.ssh && chmod 0700 ~/.ssh
                     ssh-keyscan -t rsa,dsa 192.168.56.102 >> ~/.ssh/known_hosts
-                    ssh -tt caikit@192.168.56.102 'docker stop containerized_blogsite; docker rm containerized_blogsite; docker load < /home/caikit/ftp/files/blogsite.tar; docker run -d -p 8008:3000 --restart unless-stopped --net mynetwork --ip 172.18.0.3 --name containerized_blogsite localhost:8083/capstone_blogsite:1.0; docker system prune -f'
+                    ssh -tt caikit@192.168.56.102 'docker stop containerized_blogsite; docker rm containerized_blogsite; docker load < /home/caikit/ftp/files/blogsite.tar; docker run -d -p \$CONTAINER_PORT:\$APP_PORT --restart unless-stopped --net mynetwork --ip 172.18.0.3 --name containerized_blogsite localhost:8083/capstone_blogsite:1.0; docker system prune -f'
                 '''
                 }
 
