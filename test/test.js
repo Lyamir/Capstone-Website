@@ -29,8 +29,6 @@ let testComment = {
     comment: makeid(25)
 }
 
-var appSuccess = true;
-
 describe("Testing Connection", async function(){
     it("Application should be running", async function(){
         let options = new firefox.Options();
