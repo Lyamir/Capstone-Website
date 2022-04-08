@@ -31,16 +31,21 @@ let testComment = {
 
 var appSuccess = true;
 
-// describe("Testing Connection", async function(){
-//     it("Is the application running", async function(){
-//         let options = new firefox.Options();
-//         options.addArguments("-headless");
-//         let driver = await new Builder().forBrowser("firefox").setFirefoxOptions(options).build();
-//         await driver.get(address);
+describe("Testing Connection", async function(){
+    it("Application should be running", async function(){
+        let options = new firefox.Options();
+        options.addArguments("-headless");
+        let driver = await new Builder().forBrowser("firefox").setFirefoxOptions(options).build();
+        try{
+        await driver.get(address);
         
-//         await driver.quit();
-//     });
-// });
+        await driver.quit();
+        }
+        catch{
+            throw new Error("Cannot establish connection to application");
+        }
+    });
+});
 
 describe("Unit Tests", async function(){
     //Tests get functionality of the posts displayed in the homepage
