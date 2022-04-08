@@ -22,7 +22,7 @@
   "devDependencies": {},
   "scripts": {
     "start": "node index.js",
-    "test": "node node_modules/mocha/bin/mocha --exit --no-timeouts"
+    "test": "node node_modules/mocha/bin/mocha --bail --exit --no-timeouts"
   },
   "repository": {
     "type": "git",
