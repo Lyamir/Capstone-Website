@@ -3,20 +3,44 @@ const firefox = require("selenium-webdriver/firefox");
 const assert = require("assert");
 const should = require("chai").should();
 
+function makeid(length) {
+    var result           = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < length; i++ ) {
+      result += characters.charAt(Math.floor(Math.random() * 
+ charactersLength));
+   }
+   return result;
+}
+
 let address = "http://localhost:8008";
 
 let post = {
-    title:"Integration Testing",
-    content:"Testing the integration of all modules",
-    author:"Tester"
+    title:makeid(5),
+    content:makeid(25),
+    author:makeid(10)
 }
 
 let testingUpdate = "Integration Testing Update";
 
 let testComment = {
-    author: "CommentTester",
-    comment: "Comment testing"
+    author: makeid(10),
+    comment: makeid(25)
 }
+
+var appSuccess = true;
+
+// describe("Testing Connection", async function(){
+//     it("Is the application running", async function(){
+//         let options = new firefox.Options();
+//         options.addArguments("-headless");
+//         let driver = await new Builder().forBrowser("firefox").setFirefoxOptions(options).build();
+//         await driver.get(address);
+        
+//         await driver.quit();
+//     });
+// });
 
 describe("Unit Tests", async function(){
     //Tests get functionality of the posts displayed in the homepage
