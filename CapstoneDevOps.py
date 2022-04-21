@@ -495,7 +495,7 @@ while state:
 
         elif option == 4:
             print("Are you sure you want to reset the cases?")
-            confirmation = str(input("Press Y if you want to reset N if not"))
+            confirmation = str(input("Press Y if you want to reset: "))
             if (confirmation == 'y' or confirmation == "Y"):
                 print("Resetting")
                 confirmationState = True
@@ -561,7 +561,7 @@ while state:
                 subprocess.run(['sudo','chown','-R','caikit',cases_project_based])
                 caseState = False
                 exit()
-            elif (confirmation == 'n'or confirmation == 'N'):
+            elif (confirmation != 'y'or confirmation != 'Y'):
                 print("Going back to case selection")
                 state = True
         elif option == 5:
