@@ -233,7 +233,7 @@ while state:
                         if os.path.isfile(file):
                             shutil.copy(file,dest2)
 
-                    src3 = r"/home/caikit/Documents/caikit/cases/project-based-led/integration/model"
+                    src3 = r"/home/caikit/Documents/caikit/cases/project-based/integration/model"
                     dest3 = r"/home/caikit/Documents/caikit/sites/capstone-todolist/model"
                     files5 = os.listdir(src3)
                     files6 = os.listdir(dest3)
@@ -445,7 +445,7 @@ while state:
                         if os.path.isfile(file):
                             shutil.copy(file,dest2)
 
-                    src3 = r"/home/caikit/Documents/caikit/cases/project-based-led/testing/model"
+                    src3 = r"/home/caikit/Documents/caikit/cases/project-based/testing/model"
                     dest3 = r"/home/caikit/Documents/caikit/sites/capstone-todolist/model"
                     files5 = os.listdir(src3)
                     files6 = os.listdir(dest3)
@@ -454,7 +454,7 @@ while state:
                         if os.path.isfile(file):
                             shutil.copy(file,dest3)
 
-                    src4 = r"/home/caikit/Documents/caikit/cases/project-based-led/testing/test"
+                    src4 = r"/home/caikit/Documents/caikit/cases/project-based/testing/test"
                     dest4 = r"/home/caikit/Documents/caikit/sites/capstone-todolist/test"
                     files7 = os.listdir(src4)
                     files8 = os.listdir(dest4)
