@@ -47,6 +47,7 @@ UA_todolist="/home/caikit/Documents/caikit/sites/unaltered-capstone-todolist"
 git_server="/home/caikit/Documents/caikit/git-server"
 server_capstone_blog_git= "/home/caikit/Documents/caikit/git-server/capstone-blogsite.git"
 server_capstone_message_git= "/home/caikit/Documents/caikit/git-server/capstone-messaging.git"
+server_capstone_todo_git= "/home/caikit/Documents/caikit/git-server/capstone-todolist.git"
 
 #Loops while the user has not selected a valid choice
 while state:
@@ -178,21 +179,76 @@ while state:
                     subprocess.run(['git','push','origin','master'],cwd=sites_messaging)
                     subprocess.run(['sudo','chown','-R','caikit',server_capstone_message_git])
                    
-                    #os.chdir(src)
-                    #for file in files:
-                    #r"/home/caikit/Documents/caikit/capstone-messaging"
-                    #    if os.path.isfile(file):
-                    #        shutil.copy(file,dest)
                     caseState = False
                     confirmationState = False                        
                 elif caseoption == 3:
                     print("You have chosen the Project-based case")
                     print("Please wait while we prepare the case")
-                    # os.chdir(src)
-                    # for file in files:
-                    #r"/home/caikit/Documents/caikit/capstone-todolist"
-                    #     if os.path.isfile(file):
-                    #         shutil.copy(file,dest)
+                    subprocess.run(['rm','-r', roles_programmer1])
+                    subprocess.run(['rm','-r', roles_programmer2])
+                    subprocess.run(['rm','-r', roles_devopsengineer])
+                    subprocess.run(['rm','-r', roles_qaengineer])
+                    subprocess.run(['rm','-r', roles_techlead])
+                    subprocess.run(['rm','-r', server_capstone_todo_git])
+                    subprocess.run(['rm','-r', sites_todolist])
+                    subprocess.run(['mkdir',roles_programmer1])
+                    subprocess.run(['mkdir',roles_programmer2])                   
+                    subprocess.run(['mkdir',roles_devopsengineer])
+                    subprocess.run(['mkdir',roles_qaengineer])
+                    subprocess.run(['mkdir',roles_techlead])       
+                    subprocess.run(['mkdir',server_capstone_todo_git])                    
+                    subprocess.run(['mkdir',sites_todolist])
+                    subprocess.run(['sudo','chmod','777',roles_programmer1])
+                    subprocess.run(['sudo','chmod','777',roles_programmer2])
+                    subprocess.run(['sudo','chmod','777',roles_devopsengineer])
+                    subprocess.run(['sudo','chmod','777',roles_qaengineer])
+                    subprocess.run(['sudo','chmod','777',roles_techlead])
+                    subprocess.run(['sudo','chmod','777',sites_todolist])
+                    subprocess.run(['sudo','chown','-R','caikit',server_capstone_todo_git])
+                    subprocess.run(['sudo','chmod','777',server_capstone_todo_git])
+
+                    src5 = r"/home/caikit/Documents/caikit/sites/unaltered-capstone-todolist"
+                    dest5 = r"/home/caikit/Documents/caikit/sites/capstone-todolist"
+                    shutil.copytree(src5,dest5,symlinks=False,ignore=None,ignore_dangling_symlinks=False,dirs_exist_ok=True)
+                   
+                    src6 = r"/home/caikit/Documents/caikit/sites/unaltered-capstone-todolist/"
+                    dest6 = r"/home/caikit/Documents/caikit/sites/capstone-todolist"
+                    shutil.copytree(src6,dest6,symlinks=False,ignore=None,ignore_dangling_symlinks=False,dirs_exist_ok=True)
+
+                    src = r"/home/caikit/Documents/caikit/cases/project-based/integration"
+                    dest = r"/home/caikit/Documents/caikit/sites/capstone-todolist"
+                    files = os.listdir(src)
+                    files2 = os.listdir(dest)
+                    os.chdir(src)
+                    for file in files:
+                        if os.path.isfile(file):
+                            shutil.copy(file,dest)
+
+                    src2 = r"/home/caikit/Documents/caikit/cases/project-based/integration/"
+                    dest2 = r"/home/caikit/Documents/caikit/sites/capstone-todolist"
+                    files3 = os.listdir(src2)
+                    files4 = os.listdir(dest2)
+                    os.chdir(src2)
+                    for file in files3:
+                        if os.path.isfile(file):
+                            shutil.copy(file,dest2)
+
+                    src3 = r"/home/caikit/Documents/caikit/cases/project-based-led/integration/model"
+                    dest3 = r"/home/caikit/Documents/caikit/sites/capstone-todolist/model"
+                    files5 = os.listdir(src3)
+                    files6 = os.listdir(dest3)
+                    os.chdir(src3)
+                    for file in files5:
+                        if os.path.isfile(file):
+                            shutil.copy(file,dest3)
+
+                    subprocess.run(['git','init','--bare'],cwd = server_capstone_todo_git)
+                    subprocess.run(['git','init'], cwd=sites_todolist)
+                    subprocess.run(['git','add','.'], cwd=sites_todolist)
+                    subprocess.run(['git','commit','-m','Initial commit'], cwd=sites_todolist)
+                    subprocess.run(['git','remote','add','origin',server_capstone_todo_git],cwd=sites_todolist)
+                    subprocess.run(['git','push','origin','master'],cwd=sites_todolist)
+                    subprocess.run(['sudo','chown','-R','caikit',server_capstone_todo_git])
                     caseState = False
                     confirmationState = False
                 
@@ -340,11 +396,81 @@ while state:
                 elif caseoption == 3:
                     print("You have chosen the Project-based case")
                     print("Please wait while we prepare the case")
-                    # os.chdir(src)
-                    # for file in files:
-                    #r"/home/caikit/Documents/caikit/capstone-todolist"
-                    #     if os.path.isfile(file):
-                    #         shutil.copy(file,dest)
+                    subprocess.run(['rm','-r', roles_programmer1])
+                    subprocess.run(['rm','-r', roles_programmer2])
+                    subprocess.run(['rm','-r', roles_devopsengineer])
+                    subprocess.run(['rm','-r', roles_qaengineer])
+                    subprocess.run(['rm','-r', roles_techlead])
+                    subprocess.run(['rm','-r', server_capstone_todo_git])
+                    subprocess.run(['rm','-r', sites_todolist])
+                    subprocess.run(['mkdir',roles_programmer1])
+                    subprocess.run(['mkdir',roles_programmer2])                   
+                    subprocess.run(['mkdir',roles_devopsengineer])
+                    subprocess.run(['mkdir',roles_qaengineer])
+                    subprocess.run(['mkdir',roles_techlead])       
+                    subprocess.run(['mkdir',server_capstone_todo_git])                    
+                    subprocess.run(['mkdir',sites_todolist])
+                    subprocess.run(['sudo','chmod','777',roles_programmer1])
+                    subprocess.run(['sudo','chmod','777',roles_programmer2])
+                    subprocess.run(['sudo','chmod','777',roles_devopsengineer])
+                    subprocess.run(['sudo','chmod','777',roles_qaengineer])
+                    subprocess.run(['sudo','chmod','777',roles_techlead])
+                    subprocess.run(['sudo','chmod','777',sites_todolist])
+                    subprocess.run(['sudo','chown','-R','caikit',server_capstone_todo_git])
+                    subprocess.run(['sudo','chmod','777',server_capstone_todo_git])
+
+                    src5 = r"/home/caikit/Documents/caikit/sites/unaltered-capstone-todolist"
+                    dest5 = r"/home/caikit/Documents/caikit/sites/capstone-todolist"
+                    shutil.copytree(src5,dest5,symlinks=False,ignore=None,ignore_dangling_symlinks=False,dirs_exist_ok=True)
+                   
+                    src6 = r"/home/caikit/Documents/caikit/sites/unaltered-capstone-todolist/"
+                    dest6 = r"/home/caikit/Documents/caikit/sites/capstone-todolist"
+                    shutil.copytree(src6,dest6,symlinks=False,ignore=None,ignore_dangling_symlinks=False,dirs_exist_ok=True)
+
+                    src = r"/home/caikit/Documents/caikit/cases/project-based/testing"
+                    dest = r"/home/caikit/Documents/caikit/sites/capstone-todolist"
+                    files = os.listdir(src)
+                    files2 = os.listdir(dest)
+                    os.chdir(src)
+                    for file in files:
+                        if os.path.isfile(file):
+                            shutil.copy(file,dest)
+
+                    src2 = r"/home/caikit/Documents/caikit/cases/project-based/testing/"
+                    dest2 = r"/home/caikit/Documents/caikit/sites/capstone-todolist"
+                    files3 = os.listdir(src2)
+                    files4 = os.listdir(dest2)
+                    os.chdir(src2)
+                    for file in files3:
+                        if os.path.isfile(file):
+                            shutil.copy(file,dest2)
+
+                    src3 = r"/home/caikit/Documents/caikit/cases/project-based-led/testing/model"
+                    dest3 = r"/home/caikit/Documents/caikit/sites/capstone-todolist/model"
+                    files5 = os.listdir(src3)
+                    files6 = os.listdir(dest3)
+                    os.chdir(src3)
+                    for file in files5:
+                        if os.path.isfile(file):
+                            shutil.copy(file,dest3)
+
+                    src4 = r"/home/caikit/Documents/caikit/cases/project-based-led/testing/test"
+                    dest4 = r"/home/caikit/Documents/caikit/sites/capstone-todolist/test"
+                    files7 = os.listdir(src4)
+                    files8 = os.listdir(dest4)
+                    os.chdir(src4)
+                    for file in files7:
+                        if os.path.isfile(file):
+                            shutil.copy(file,dest4)
+                    
+
+                    subprocess.run(['git','init','--bare'],cwd = server_capstone_todo_git)
+                    subprocess.run(['git','init'], cwd=sites_todolist)
+                    subprocess.run(['git','add','.'], cwd=sites_todolist)
+                    subprocess.run(['git','commit','-m','Initial commit'], cwd=sites_todolist)
+                    subprocess.run(['git','remote','add','origin',server_capstone_todo_git],cwd=sites_todolist)
+                    subprocess.run(['git','push','origin','master'],cwd=sites_todolist)
+                    subprocess.run(['sudo','chown','-R','caikit',server_capstone_todo_git])
                     caseState = False
                     confirmationState = False
                 
@@ -470,23 +596,88 @@ while state:
                     subprocess.run(['git','push','origin','master'],cwd=sites_messaging)
                     subprocess.run(['sudo','chown','-R','caikit',server_capstone_message_git])
                     
-                    # os.chdir(src)
-                    # for file in files:
-                    #r"/home/caikit/Documents/caikit/capstone-messaging"
-                    #     if os.path.isfile(file):
-                    #         shutil.copy(file,dest)
                     caseState = False
                     confirmationState = False                        
                 elif caseoption == 3:
                     print("You have chosen the Project-based case")
                     print("Please wait while we prepare the case")
-                    # os.chdir(src)
-                    # for file in files:
-                    #r"/home/caikit/Documents/caikit/capstone-todolist"
-                    #     if os.path.isfile(file):
-                    #         shutil.copy(file,dest)
+                    subprocess.run(['rm','-r', roles_programmer1])
+                    subprocess.run(['rm','-r', roles_programmer2])
+                    subprocess.run(['rm','-r', roles_devopsengineer])
+                    subprocess.run(['rm','-r', roles_qaengineer])
+                    subprocess.run(['rm','-r', roles_techlead])
+                    subprocess.run(['rm','-r', server_capstone_todo_git])
+                    subprocess.run(['rm','-r', sites_todolist])
+                    subprocess.run(['mkdir',roles_programmer1])
+                    subprocess.run(['mkdir',roles_programmer2])                   
+                    subprocess.run(['mkdir',roles_devopsengineer])
+                    subprocess.run(['mkdir',roles_qaengineer])
+                    subprocess.run(['mkdir',roles_techlead])       
+                    subprocess.run(['mkdir',server_capstone_todo_git])                    
+                    subprocess.run(['mkdir',sites_todolist])
+                    subprocess.run(['sudo','chmod','777',roles_programmer1])
+                    subprocess.run(['sudo','chmod','777',roles_programmer2])
+                    subprocess.run(['sudo','chmod','777',roles_devopsengineer])
+                    subprocess.run(['sudo','chmod','777',roles_qaengineer])
+                    subprocess.run(['sudo','chmod','777',roles_techlead])
+                    subprocess.run(['sudo','chmod','777',sites_todolist])
+                    subprocess.run(['sudo','chown','-R','caikit',server_capstone_todo_git])
+                    subprocess.run(['sudo','chmod','777',server_capstone_todo_git])
+
+                    src5 = r"/home/caikit/Documents/caikit/sites/unaltered-capstone-todolist"
+                    dest5 = r"/home/caikit/Documents/caikit/sites/capstone-todolist"
+                    shutil.copytree(src5,dest5,symlinks=False,ignore=None,ignore_dangling_symlinks=False,dirs_exist_ok=True)
+                   
+                    src6 = r"/home/caikit/Documents/caikit/sites/unaltered-capstone-todolist/"
+                    dest6 = r"/home/caikit/Documents/caikit/sites/capstone-todolist"
+                    shutil.copytree(src6,dest6,symlinks=False,ignore=None,ignore_dangling_symlinks=False,dirs_exist_ok=True)
+
+                    src = r"/home/caikit/Documents/caikit/cases/project-based/delivery-and-deployment"
+                    dest = r"/home/caikit/Documents/caikit/sites/capstone-todolist"
+                    files = os.listdir(src)
+                    files2 = os.listdir(dest)
+                    os.chdir(src)
+                    for file in files:
+                        if os.path.isfile(file):
+                            shutil.copy(file,dest)
+
+                    src2 = r"/home/caikit/Documents/caikit/cases/project-based/delivery-and-deployment/"
+                    dest2 = r"/home/caikit/Documents/caikit/sites/capstone-todolist"
+                    files3 = os.listdir(src2)
+                    files4 = os.listdir(dest2)
+                    os.chdir(src2)
+                    for file in files3:
+                        if os.path.isfile(file):
+                            shutil.copy(file,dest2)
+
+                    src3 = r"/home/caikit/Documents/caikit/cases/project-based/delivery-and-deployment/model"
+                    dest3 = r"/home/caikit/Documents/caikit/sites/capstone-todolist/model"
+                    files5 = os.listdir(src3)
+                    files6 = os.listdir(dest3)
+                    os.chdir(src3)
+                    for file in files5:
+                        if os.path.isfile(file):
+                            shutil.copy(file,dest3)
+
+                    src4 = r"/home/caikit/Documents/caikit/cases/project-based/delivery-and-deployment/test"
+                    dest4 = r"/home/caikit/Documents/caikit/sites/capstone-todolist/test"
+                    files7 = os.listdir(src4)
+                    files8 = os.listdir(dest4)
+                    os.chdir(src4)
+                    for file in files7:
+                        if os.path.isfile(file):
+                            shutil.copy(file,dest4)
+
+                    subprocess.run(['git','init','--bare'],cwd = server_capstone_todo_git)
+                    subprocess.run(['git','init'], cwd=sites_todolist)
+                    subprocess.run(['git','add','.'], cwd=sites_todolist)
+                    subprocess.run(['git','commit','-m','Initial commit'], cwd=sites_todolist)
+                    subprocess.run(['git','remote','add','origin',server_capstone_todo_git],cwd=sites_todolist)
+                    subprocess.run(['git','push','origin','master'],cwd=sites_todolist)
+                    subprocess.run(['sudo','chown','-R','caikit',server_capstone_todo_git])
                     caseState = False
                     confirmationState = False
+
                 
                 elif caseoption == 4:
                     confirmationState = False
@@ -532,29 +723,54 @@ while state:
                 subprocess.run(['sudo','mkdir',git_server])
                 subprocess.run(['sudo','mkdir',server_capstone_blog_git])
                 subprocess.run(['sudo','mkdir',server_capstone_message_git])
+                subprocess.run(['sudo','mkdir',server_capstone_todo_git])
                 subprocess.run(['sudo','chmod','777',root_folder])
                 subprocess.run(['sudo','chown','-R','caikit',root_folder])
+               
+                #Initializing blogsite
                 subprocess.Popen(['git','clone','https://github.com/Lyamir/capstone-blogsite.git','/home/caikit/Documents/caikit/sites/unaltered-capstone-blogsite/']).wait()
                 subprocess.Popen(['npm','install','-f'],cwd='/home/caikit/Documents/caikit/sites/unaltered-capstone-blogsite').wait()
+                
+                #Initializing messaging
                 subprocess.Popen(['git','clone','https://github.com/Lyamir/capstone-messaging.git','/home/caikit/Documents/caikit/sites/unaltered-capstone-messaging/']).wait()
                 subprocess.Popen(['npm','install','-f'],cwd='/home/caikit/Documents/caikit/sites/unaltered-capstone-messaging').wait()
 
+                #Initializing todolist
+                subprocess.Popen(['git','clone','https://github.com/Lyamir/capstone-todolist.git','/home/caikit/Documents/caikit/sites/unaltered-capstone-todolist/']).wait()
+                subprocess.Popen(['npm','install','-f'],cwd='/home/caikit/Documents/caikit/sites/unaltered-capstone-todolist').wait()
+
+                #Changing permissions for blogsite
                 subprocess.run(['sudo','chmod','-R','777','/home/caikit/Documents/caikit/sites/unaltered-capstone-blogsite/'])
                 subprocess.run(['sudo','chown','-R','caikit','/home/caikit/Documents/caikit/sites/unaltered-capstone-blogsite/'])
+                
+                #Changing permissions for messaging
                 subprocess.run(['sudo','chmod','-R','777','/home/caikit/Documents/caikit/sites/unaltered-capstone-messaging/'])
-                subprocess.run(['sudo','chown','-R','caikit','/home/caikit/Documents/caikit/sites/unaltered-capstone-messaging/'])    
+                subprocess.run(['sudo','chown','-R','caikit','/home/caikit/Documents/caikit/sites/unaltered-capstone-messaging/'])  
 
+                #Changing permissions for todolist
+                subprocess.run(['sudo','chmod','-R','777','/home/caikit/Documents/caikit/sites/unaltered-capstone-todolist/'])
+                subprocess.run(['sudo','chown','-R','caikit','/home/caikit/Documents/caikit/sites/unaltered-capstone-todolist/'])
+
+                #Copying teacher-led cases
                 subprocess.run(['sudo','cp','-r','/home/caikit/Documents/caikit/sites/unaltered-capstone-blogsite/cases/teacher-led/delivery-and-deployment','/home/caikit/Documents/caikit/cases/teacher-led/'])
                 subprocess.run(['sudo','cp','-r','/home/caikit/Documents/caikit/sites/unaltered-capstone-blogsite/cases/teacher-led/integration','/home/caikit/Documents/caikit/cases/teacher-led/'])
                 subprocess.run(['sudo','cp','-r','/home/caikit/Documents/caikit/sites/unaltered-capstone-blogsite/cases/teacher-led/testing','/home/caikit/Documents/caikit/cases/teacher-led/'])
+                
+                #Copying student-led cases
                 subprocess.run(['sudo','cp','-r','/home/caikit/Documents/caikit/sites/unaltered-capstone-messaging/cases/student-led/integration','/home/caikit/Documents/caikit/cases/student-led/'])
                 subprocess.run(['sudo','cp','-r','/home/caikit/Documents/caikit/sites/unaltered-capstone-messaging/cases/student-led/delivery-and-deployment','/home/caikit/Documents/caikit/cases/student-led/'])
                 subprocess.run(['sudo','cp','-r','/home/caikit/Documents/caikit/sites/unaltered-capstone-messaging/cases/student-led/testing','/home/caikit/Documents/caikit/cases/student-led/'])
+
+                #Copying project-based cases
+                subprocess.run(['sudo','cp','-r','/home/caikit/Documents/caikit/sites/unaltered-capstone-todolist/cases/project-based/integration','/home/caikit/Documents/caikit/cases/project-based/'])
+                subprocess.run(['sudo','cp','-r','/home/caikit/Documents/caikit/sites/unaltered-capstone-todolist/cases/project-based/delivery-and-deployment','/home/caikit/Documents/caikit/cases/project-based/'])
+                subprocess.run(['sudo','cp','-r','/home/caikit/Documents/caikit/sites/unaltered-capstone-todolist/cases/project-based/testing','/home/caikit/Documents/caikit/cases/project-based/'])
 
                 subprocess.run(['sudo','rm','-dr','/home/caikit/Documents/caikit/sites/unaltered-capstone-blogsite/.git'])
                 subprocess.run(['sudo','rm','-dr','/home/caikit/Documents/caikit/sites/unaltered-capstone-blogsite/.gitattributes'])
                 subprocess.run(['sudo','rm','-dr','/home/caikit/Documents/caikit/sites/unaltered-capstone-blogsite/.gitignore'])
                 subprocess.run(['sudo','rm','-dr','/home/caikit/Documents/caikit/sites/unaltered-capstone-messaging/.git'])
+                subprocess.run(['sudo','rm','-dr','/home/caikit/Documents/caikit/sites/unaltered-capstone-todolist/.git'])
                 subprocess.run(['sudo','chmod','-R','777',cases_teacher_led])
                 subprocess.run(['sudo','chmod','-R','777',cases_student_led])
                 subprocess.run(['sudo','chmod','-R','777',cases_project_based])
