@@ -16,7 +16,6 @@ pipeline{
     stages{
         stage('Build Step'){
             steps {
-
                 sh "npm install"
 
                 //Dockerization
