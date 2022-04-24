@@ -445,15 +445,6 @@ while state:
                         if os.path.isfile(file):
                             shutil.copy(file,dest2)
 
-                    src3 = r"/home/caikit/Documents/caikit/cases/project-based/testing/model"
-                    dest3 = r"/home/caikit/Documents/caikit/sites/capstone-todolist/model"
-                    files5 = os.listdir(src3)
-                    files6 = os.listdir(dest3)
-                    os.chdir(src3)
-                    for file in files5:
-                        if os.path.isfile(file):
-                            shutil.copy(file,dest3)
-
                     src4 = r"/home/caikit/Documents/caikit/cases/project-based/testing/test"
                     dest4 = r"/home/caikit/Documents/caikit/sites/capstone-todolist/test"
                     files7 = os.listdir(src4)
