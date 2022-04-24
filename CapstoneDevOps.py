@@ -301,15 +301,7 @@ while state:
                     src6 = r"/home/caikit/Documents/caikit/sites/unaltered-capstone-blogsite/"
                     dest6 = r"/home/caikit/Documents/caikit/sites/capstone-blogsite"
                     shutil.copytree(src6,dest6,symlinks=False,ignore=None,ignore_dangling_symlinks=False,dirs_exist_ok=True)
-
-                    src = r"/home/caikit/Documents/caikit/cases/teacher-led/testing/model"
-                    dest = r"/home/caikit/Documents/caikit/sites/capstone-blogsite/model"
-                    files = os.listdir(src)
-                    files2 = os.listdir(dest)
-                    os.chdir(src)
-                    for file in files:
-                        if os.path.isfile(file):
-                            shutil.copy(file,dest)
+                    
                     src2 = r"/home/caikit/Documents/caikit/cases/teacher-led/testing/test"
                     dest2 = r"/home/caikit/Documents/caikit/sites/capstone-blogsite/test"
                     files3 = os.listdir(src2)
