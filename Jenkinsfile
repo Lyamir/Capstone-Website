@@ -78,7 +78,7 @@ pipeline{
                 sh '''
                     [ -d ~/.ssh ] || mkdir ~/.ssh && chmod 0700 ~/.ssh
                     ssh-keyscan -t rsa,dsa \$PROD_IP_ADD >> ~/.ssh/known_hosts
-                    ssh -tt caikit@\$PROD_IP_ADD 'if [ $(docker ps -a -f name=containerized_blogsite | grep -o containerized_blogsite) ]; then docker stop containerized_blogsite; docker rm containerized_blogsite; fi; docker load < /home/caikit/ftp/files/blogsite.tar; docker run -d -p 8008:3000 --restart unless-stopped --net mynetwork --ip 172.18.0.3 --name containerized_blogsite localhost:8083/capstone_blogsite:1.0; docker system prune -f'
+                    ssh -tt caikit@\$PROD_IP_ADD 'if [ $(docker ps -a -f name=containerized_blogsite | grep -o containerized_blogsite) ]; then docker stop containerized_blogsite; docker rm containerized_blogsite; fi; docker load < /home/caikit/ftp/files/blogsite.tar; docker run -d -p 8008:3000 --restart unless-stopped --net mynetwork --ip 172.18.0.3 --name containerized_blogsite localhost:8083/capstone_blogsite:1.0; docker system prune -af'
                 '''
                 }
 
