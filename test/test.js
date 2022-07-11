@@ -70,17 +70,14 @@ describe("Unit Tests", async function(){
 
         let titleResult = await driver.findElement(By.xpath("/html/body/div/div/div[1]")).getText();
         let authorResult = await driver.findElement(By.xpath("/html/body/div/div/div[2]")).getText();
-        let dateResult = await driver.findElement(By.xpath("/html/body/div/div/div[3]")).getText();
         let contentResult = await driver.findElement(By.xpath("/html/body/div/div/div[4]")).getText();
 
         let title = "Goodbye World";
         let author = "Created by: admin";
-        let date = "Created on: Wed Oct 27 2021 00:00:00 GMT+0000 (Coordinated Universal Time)";
         let content = "This is an updated post";
 
         titleResult.should.equal(title);
         authorResult.should.equal(author);
-        dateResult.should.equal(date);
         contentResult.should.equal(content);
 
         await driver.findElement(By.xpath("/html/body/a[2]")).click();
